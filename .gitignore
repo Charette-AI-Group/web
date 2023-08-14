@@ -1,0 +1,5 @@
+*.ps1
+
+*.code-workspace
+
+node_modules
