@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+  shrink-to-fit=no">
+  <meta name="description"
+    content="Free Obsidian plugin: a floating toolbar that styles selected text with clean inline HTML — colors, highlights, sizes, fonts, and alignment — all merged into a single span.">
+  <meta name="author" content="Charette AI Group">
+  <title>HTML Font Toolbar — Obsidian Formatting Plugin | Charette AI Group</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/business-frontpage.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="rvBackupHelper.html">RV Backup Helper
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="saeCalculator.html">SAE Fractional Calculator
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="htmlFontToolbar.html">HTML Font Toolbar
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">HTML Font Toolbar</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>Objectives</h2>
+        <hr>
+        <p>A free plugin for <a href="https://obsidian.md">Obsidian</a> that adds a floating, Word-like formatting toolbar to your notes: text colors, highlights, font sizes, font families, bold/italic/underline/strikethrough, and alignment. What makes it different from every other formatting plugin: <b>everything it produces is one clean inline HTML span</b> &mdash; stack as many styles as you like and they merge into a single tag instead of nesting wrappers.</p>
+        <ul>
+          <li>Select a word, click red, click yellow highlight, click Large, click bold &mdash; the result is a single <code>&lt;span&gt;</code></li>
+          <li>Click inside an already-styled word to restyle it &mdash; no re-selecting, even when Obsidian hides the markup</li>
+          <li>Semi-transparent highlight presets that stay readable in light <i>and</i> dark themes</li>
+          <li>Table-aware alignment: aligns paragraphs, whole table columns, or a selected fragment inside a cell</li>
+          <li>Every preset is customizable in the settings tab &mdash; add, rename, or recolor colors, highlights, sizes, and fonts</li>
+          <li>Notes stay plain HTML, so they render identically even if the plugin is later removed</li>
+        </ul>
+        <h2 class="mt-5">Get the Plugin</h2>
+        <hr>
+        <p>Free and open source, for Obsidian on the desktop. The plugin is being submitted to the official Obsidian community plugin directory; once accepted it will be installable directly from Obsidian via Settings &rarr; Community plugins &rarr; Browse. Until then it can be installed manually from the GitHub release.</p>
+        <a href="https://github.com/Charette-AI-Group/html-font-toolbar" class="btn btn-primary">Plugin on GitHub</a>
+        <a href="https://github.com/Charette-AI-Group/html-font-toolbar/releases/latest" class="btn btn-primary">Latest Release</a>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=FEM4WLD7LHY36" class="btn btn-secondary">Donate with PayPal</a>
+        <p class="text-muted mt-3"><small>Manual install: download <b>main.js</b>, <b>manifest.json</b>, and <b>styles.css</b> from the release page into <code>&lt;your vault&gt;/.obsidian/plugins/html-font-toolbar/</code>, then enable the plugin in Settings &rarr; Community plugins.</small></p>
+        <p class="text-muted"><small>If this plugin is useful to you, consider supporting its development with a donation &mdash; thank you!</small></p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border mb-4" src="img/htmlFontToolbarScreenshot.png" alt="The floating formatting toolbar over an Obsidian note">
+        <img class="img-fluid rounded border" src="img/htmlFontToolbarSettings.png" alt="The settings tab with customizable color and font presets">
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Charette AI Group, 2026</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
