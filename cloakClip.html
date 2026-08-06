@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+  shrink-to-fit=no">
+  <meta name="description"
+    content="Free desktop app that encrypts and decrypts text with a shared password, straight from the clipboard. Send private messages through chat, email or notes. Windows and macOS download.">
+  <meta name="author" content="Charette AI Group">
+  <title>CloakClip — Encrypt Text and Clipboard with a Password | Charette AI Group</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/business-frontpage.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="rvBackupHelper.html">RV Backup Helper
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="saeCalculator.html">SAE Fractional Calculator
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="htmlFontToolbar.html">HTML Font Toolbar
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="cloakClip.html">CloakClip
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">CloakClip</h1>
+          <p class="lead mb-5 text-white-50">Encrypt and decrypt text with a shared password, straight from the clipboard.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>Objective</h2>
+        <hr>
+        <p>Anything you type into a chat, an email, or a note usually outlives the moment you send it. Messages sit on servers, get forwarded, get backed up, and stay searchable long after the conversation is over. CloakClip lets you protect the parts that matter without changing how you communicate: you &ldquo;cloak&rdquo; the text with a password, and what you send is an ordinary line of characters that only someone with the same password can read.</p>
+        <p>Because the result is just text, it travels anywhere text goes &mdash; no attachments, no plugins, and nothing for the person at the other end to install. They only need CloakClip and the password.</p>
+
+        <h3 class="mt-4">What people use it for</h3>
+        <ul>
+          <li><b>Chats and DMs</b> that your employer or the platform keeps a copy of</li>
+          <li><b>Emails</b> containing a Wi-Fi password, an API key, a licence key, or account details</li>
+          <li><b>Tickets and shared documents</b> that more people can read than you intended</li>
+          <li><b>Personal notes</b> in an app that syncs to somebody else's cloud &mdash; recovery codes, account numbers, a private journal entry, or the answer to a security question</li>
+          <li><b>Anything routed through a channel you do not control</b>, right down to leaving yourself a note in a place you would rather not trust</li>
+        </ul>
+
+        <h2 class="mt-5">Features</h2>
+        <hr>
+        <p>Two tabs cover two ways of working, and everything is designed so a decrypted secret does not quietly outlive its use.</p>
+
+        <h3 class="mt-4">Clipboard tab &mdash; one click</h3>
+        <ul>
+          <li>Copy any text, click <b>Cloak Clipboard</b>, and paste the encrypted result wherever you like</li>
+          <li>Copy an encrypted message, click <b>Uncloak Clipboard</b>, and paste the original text</li>
+          <li>The box is <b>editable</b>: uncloak a message, reword it in place, and click Cloak Clipboard to send your reply back &mdash; without the plain text ever leaving the app</li>
+          <li><b>Clear Clipboard &amp; History</b> empties the clipboard and purges Windows clipboard history in one click</li>
+        </ul>
+
+        <h3 class="mt-4">Manual tab &mdash; nothing touches the clipboard</h3>
+        <ul>
+          <li>A plain-text field and an encrypted field that stay in sync <b>as you type</b> &mdash; no buttons to press for either direction</li>
+          <li>Type a message and watch the encrypted version appear; paste an encrypted message and read the original above it</li>
+          <li>Reading a message this way means the secret <b>never reaches the clipboard at all</b></li>
+          <li>Each field has its own Paste and Copy buttons, so text moves only when you say so</li>
+        </ul>
+
+        <h3 class="mt-4">Keeping secrets from lingering</h3>
+        <p>Windows keeps a history of everything you copy (the Win+V panel) and can sync it to the cloud, so a decrypted secret normally survives long after you paste it. CloakClip works against that:</p>
+        <ul>
+          <li>Decrypted text placed on the clipboard is <b>marked secret</b>, using the same mechanism password managers use, so Windows keeps it out of clipboard history and cloud sync &mdash; while it still pastes normally</li>
+          <li>Text you <b>cloak</b> counts too: whatever app you copied it from already recorded it, so CloakClip tracks it and removes it later</li>
+          <li>If you copy a protected text again by hand, it is <b>re-protected automatically</b> and the recorded copy is deleted from the history</li>
+          <li>Closing the app clears a copied secret and sweeps the session's secrets out of the history</li>
+          <li><b>Clear All!</b> on exit &mdash; a second line of defence that empties the clipboard and purges the whole history, so nothing is left behind whether the app was tracking it or not</li>
+        </ul>
+
+        <h3 class="mt-4">Passwords and comfort</h3>
+        <ul>
+          <li>A <b>Password menu</b> remembers your last ten passwords, each shown only as its first and last character (<code>h&hellip;!</code>) to jog your memory without revealing anything</li>
+          <li>One click reuses the last password; a password is remembered only after it actually works, so typos are never stored</li>
+          <li>The history is <b>encrypted with Windows DPAPI</b>, tied to your Windows account, and can be cleared at any time</li>
+          <li><b>Light and dark themes</b>, following Windows by default with a per-app override</li>
+          <li>The window <b>reopens where you left it</b>, and the app is a single file with no installation</li>
+        </ul>
+
+        <h3 class="mt-4">Encryption</h3>
+        <p>AES-256 in CBC mode, with the key derived from your password and a fresh random initialization vector for every message &mdash; so cloaking the same text twice produces two completely different results, and nobody can tell that two messages match. Since the key derivation is a single hash rather than a slow stretching function, <b>use a long password</b>.</p>
+        <p class="text-muted"><small><b>Share the password through a different channel than the message.</b> If you email a cloaked block, do not email the password &mdash; send it by text, say it in a phone call, or hand it over in person. Both halves in the same place means no protection at all.</small></p>
+
+        <h2 class="mt-5">Download</h2>
+        <hr>
+        <p>Free standalone application &mdash; a single file, no installation required.</p>
+        <a href="https://github.com/Charette-AI-Group/cloakClip/releases/latest" class="btn btn-primary">Download for Windows</a>
+        <a href="https://github.com/Charette-AI-Group/cloakClip/releases/latest" class="btn btn-primary">Download for macOS</a>
+        <a href="https://github.com/Charette-AI-Group/cloakClip" class="btn btn-secondary">Source on GitHub</a>
+        <p class="text-muted mt-3"><small>Both buttons bring you to the GitHub release page: scroll down to the <b>Assets</b> section and click <b>CloakClip.exe</b> for Windows, or <b>CloakClip-macos.zip</b> for macOS.</small></p>
+        <p class="text-muted"><small>Windows may show a SmartScreen notice on first run because the download is unsigned; choose &ldquo;More info&rdquo;, then &ldquo;Run anyway&rdquo;. On macOS, right-click the app and choose &ldquo;Open&rdquo; the first time.</small></p>
+        <p class="text-muted"><small>The clipboard-history protections described above are specific to Windows. The macOS version encrypts and decrypts exactly the same way, and tells you plainly which protections it cannot yet provide rather than implying it has them.</small></p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border" src="img/cloakClipScreenshot.png" alt="CloakClip main window showing an uncloaked message on the Clipboard tab">
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2>Support This Work</h2>
+        <hr>
+        <p>CloakClip is free, has no ads, collects nothing about you, and never sends your text anywhere &mdash; everything happens on your own machine. That is the way privacy tools ought to work, and it is also why they are hard to sustain: there is no data to sell and no subscription to bill, so nothing pays for the work behind them.</p>
+        <p>Small tools like this take real time to build and, more importantly, to keep alive. Operating systems change, security behaviour changes underneath them, bugs surface in real use, and features get added because someone asked. A donation, however small, is what makes that continued attention possible &mdash; and it directly funds the next free tool as well as the upkeep of this one.</p>
+        <p>If CloakClip saved you a worry or a wasted hour, please consider chipping in. It genuinely makes the difference between a project that keeps improving and one that quietly stops.</p>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=FEM4WLD7LHY36" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Donate</a>
+        <p class="text-muted mt-3"><small>Secure payment through PayPal &mdash; no account required, and any amount is appreciated. Thank you for supporting independent, privacy-respecting software.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Charette AI Group, 2026</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
