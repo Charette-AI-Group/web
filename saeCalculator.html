@@ -87,11 +87,9 @@
         <h2 class="mt-5">Download</h2>
         <hr>
         <p>Free standalone application for Windows and macOS &mdash; a single file, no installation required.</p>
-        <a href="https://saecalculator.com" class="btn btn-primary">Use It in Your Browser</a>
         <a href="https://github.com/Charette-AI-Group/saeCalculator/releases/latest" class="btn btn-primary">Download for Windows</a>
         <a href="https://github.com/Charette-AI-Group/saeCalculator/releases/latest" class="btn btn-primary">Download for macOS</a>
         <a href="https://github.com/Charette-AI-Group/saeCalculator" class="btn btn-secondary">Source on GitHub</a>
-        <p class="text-muted mt-3"><small>The browser version at <a href="https://saecalculator.com">saecalculator.com</a> works on phones too: open it and choose "Add to Home Screen" to install it like an app.</small></p>
         <p class="text-muted mt-3"><small>Both download buttons bring you to the GitHub release page: scroll down to the <b>Assets</b> section and click <b>saeCalculator.exe</b> for Windows, or <b>saeCalculator-macos.zip</b> for macOS.</small></p>
         <p class="text-muted"><small>Windows may show a SmartScreen notice on first run because the download is unsigned; choose "More info", then "Run anyway".</small></p>
         <p class="text-muted"><small>The macOS build is for <b>Apple Silicon</b> Macs (M1 or newer) and does not run on Intel Macs. It is unsigned, so the first time you open it, right-click the app and choose &ldquo;Open&rdquo; rather than double-clicking. If macOS says instead that the app &ldquo;is damaged&rdquo;, it is not &mdash; that is Gatekeeper quarantining an unsigned download. Clear it from Terminal with <code>xattr -cr path/to/saeCalculator.app</code>, then open it normally.</small></p>
@@ -103,7 +101,14 @@
         <iframe class="rounded border" src="https://saecalculator.com/?embed=1" loading="lazy"
           title="SAE Fractional Calculator — the working calculator"
           style="width: 100%; height: 580px;"></iframe>
-        <p class="text-muted mt-2"><small>That is the calculator itself, not a picture &mdash; go ahead and use it. It also has <a href="https://saecalculator.com">a page of its own</a>.</small></p>
+        <div class="card bg-light mt-3">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-2">Try it right here</h5>
+            <p class="card-text mb-3"><small>That is the calculator itself, not a screenshot &mdash; click the keys and it works, exactly as the desktop app does. Nothing to install, and nothing you type leaves your browser.</small></p>
+            <a href="https://saecalculator.com" class="btn btn-primary">Use It in Your Browser</a>
+            <p class="card-text text-muted mt-3 mb-0"><small>Opens it full screen at <b>saecalculator.com</b>, where it also runs offline &mdash; on a phone, choose <em>Add to Home Screen</em> to keep it like an app.</small></p>
+          </div>
+        </div>
       </div>
     </div>
     <!-- /.row -->
