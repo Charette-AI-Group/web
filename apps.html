@@ -83,7 +83,13 @@
       An Obsidian plugin, counted by Obsidian itself:
 
         <span class="h3 mb-0 downloadCount"
-              data-obsidian-plugin="<plugin id>">&mdash;</span>
+              data-obsidian-plugin="<plugin id>"
+              data-stats-repo="Charette-AI-Group/<repo>">&mdash;</span>
+
+      data-stats-repo points at a plugin repo running the daily
+      downloadCount.yml workflow, which writes stats/downloads.json from the
+      plugin's community directory page. Leave it off and the count falls back
+      to Obsidian's own published stats file, which trails by a day or two.
 
       js/downloadCounts.js picks the source from whichever attribute is
       present. See the note at the bottom of this page for what each number
@@ -148,7 +154,7 @@
             <p class="text-muted mb-3"><small>Obsidian plugin &middot; in the official community directory</small></p>
             <p class="card-text">A floating, Word-like formatting toolbar for Obsidian notes: colors, highlights, sizes, fonts, alignment and a symbol picker &mdash; all merged into a single clean inline HTML span instead of nested wrappers.</p>
             <p class="mb-3">
-              <span class="h3 mb-0 downloadCount" data-obsidian-plugin="html-font-toolbar">&mdash;</span>
+              <span class="h3 mb-0 downloadCount" data-obsidian-plugin="html-font-toolbar" data-stats-repo="Charette-AI-Group/html-font-toolbar">&mdash;</span>
               <span class="text-muted">downloads</span>
             </p>
             <a href="htmlFontToolbar.html" class="btn btn-primary">Find Out More!</a>
@@ -171,7 +177,7 @@
             <p class="text-muted mb-3"><small>Obsidian plugin &middot; in the official community directory &middot; sister plugin to HTML Font Toolbar</small></p>
             <p class="card-text">A Word-style toolbar for real HTML tables in Obsidian: add rows and columns, merge and split cells, set header rows, align, control borders per row and per column, and shade individual cells &mdash; none of which a Markdown pipe table can do.</p>
             <p class="mb-3">
-              <span class="h3 mb-0 downloadCount" data-obsidian-plugin="html-table-toolbar">&mdash;</span>
+              <span class="h3 mb-0 downloadCount" data-obsidian-plugin="html-table-toolbar" data-stats-repo="Charette-AI-Group/html-table-toolbar">&mdash;</span>
               <span class="text-muted">downloads</span>
             </p>
             <a href="htmlTableToolbar.html" class="btn btn-primary">Find Out More!</a>
@@ -204,7 +210,7 @@
         <h2>About These Numbers</h2>
         <hr>
         <p class="text-muted"><small>Each count is a cumulative total since the app's first version, read when you open this page and kept in your browser for six hours so it is not fetched again on every visit. <b>Desktop applications</b> are counted by GitHub: every download of a published release file, which leaves out copies of the source taken with the green <b>Code</b> button, since those are counted nowhere. The <b>Obsidian plugins</b> are counted by Obsidian, which is the honest number for a plugin &mdash; almost everyone installs from the community directory, and GitHub never sees those.</small></p>
-        <p class="text-muted"><small>Those plugin figures come from the statistics file Obsidian publishes rather than from their directory pages, and the two do not agree. The file is rewritten once a day, but it has been running a day or two behind: on 11 August it read 342 and 19 while the directory pages showed 393 and 40, and it had not moved at all between the 9th and the 10th. So the plugin numbers here are lower than the ones on Obsidian's own listing, and further out for a plugin still finding its audience. That file is the only source a browser is allowed to read, so matching the directory exactly would take a scheduled job on our side. A dash means the source could not be reached just now, rather than a count of zero.</small></p>
+        <p class="text-muted"><small>Those plugin figures are the ones on Obsidian's own directory listing. A browser is not allowed to read that page &mdash; it sends no CORS header &mdash; so each plugin's repository reads it once a day from a workflow and records the number, and this page reads that. Obsidian also publishes a statistics file, which would be the obvious source but runs a day or two behind: on 11 August it read 342 and 19 while the directory showed 393 and 40. It is kept only as a fallback, so if a plugin's own record cannot be reached the count still appears, just low. A dash means neither source could be reached, rather than a count of zero.</small></p>
       </div>
     </div>
     <!-- /.row -->

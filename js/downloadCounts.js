@@ -39,20 +39,21 @@
   var PAGE_SIZE = 100;
   var MAX_PAGES = 5;
 
-  // Obsidian's published totals for every community plugin. It is a single
-  // ~2 MB file covering all 6000-odd plugins - there is no per-plugin endpoint
-  // - so it is fetched once per page and only the one number we want is
-  // cached; the blob itself is never stored.
-  //
-  // It is rewritten once a day just after 00:15 UTC, but it does NOT agree
-  // with the figure on community.obsidian.md: measured on 2026-08-11, the file
-  // said 342 and 19 while the directory pages said 393 and 40, and the file
-  // had not moved at all between the 9th and the 10th. So it trails by a day
-  // or two, and proportionally worse for a young plugin. It is still the only
-  // source a browser may read - community.obsidian.md sends no CORS header.
-  // Matching the directory means a daily workflow in each plugin's own repo
-  // reading its page server-side and writing a small JSON, then pointing
-  // OBSIDIAN_STATS at that. Nothing else here would change.
+  // A plugin's count comes from its own repo: a daily workflow there reads the
+  // plugin's community directory page server-side - a browser may not, since
+  // community.obsidian.md sends no CORS header - and writes the number to
+  // stats/downloads.json. A few hundred bytes, and it matches the figure on
+  // Obsidian's listing.
+  var PLUGIN_STATS = 'https://raw.githubusercontent.com/{repo}/main/stats/downloads.json';
+
+  // Fallback when that file is missing or unreadable, e.g. a plugin whose
+  // workflow has not run yet. Obsidian's own published totals for every
+  // community plugin: one ~2 MB file covering all 6000-odd of them, with no
+  // per-plugin endpoint, so it is fetched once per page and only the number we
+  // want is kept; the blob itself is never stored. It is rewritten daily just
+  // after 00:15 UTC but trails the directory badly - measured 2026-08-11 it
+  // read 342 and 19 while the directory said 393 and 40 - which is exactly why
+  // it is the fallback rather than the source.
   var OBSIDIAN_STATS =
     'https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugin-stats.json';
 
@@ -124,6 +125,20 @@
     return readPage(1);
   }
 
+  function pluginRepoTotal(repo) {
+    return fetch(PLUGIN_STATS.replace('{repo}', repo)).then(function (response) {
+      if (!response.ok) {
+        throw new Error(repo + ' stats returned ' + response.status);
+      }
+      return response.json();
+    }).then(function (stats) {
+      if (typeof stats.downloads !== 'number') {
+        throw new Error(repo + ' stats has no downloads number');
+      }
+      return stats.downloads;
+    });
+  }
+
   // Shared by every plugin on the page, so the big file is fetched at most once.
   var obsidianStats = null;
 
@@ -161,11 +176,22 @@
   function plan(element) {
     var plugin = element.getAttribute('data-obsidian-plugin');
     if (plugin) {
+      var statsRepo = element.getAttribute('data-stats-repo');
       return {
         source: 'obsidian:' + plugin,
         key: 'obsidianDownloads:' + plugin,
         load: function () {
-          return obsidianTotal(plugin);
+          if (!statsRepo) {
+            return obsidianTotal(plugin);
+          }
+          return pluginRepoTotal(statsRepo)['catch'](function (error) {
+            // The repo's own file is the current number; Obsidian's published
+            // one is stale but always there. Better a low count than a dash.
+            if (window.console) {
+              window.console.warn('downloadCounts: falling back to Obsidian stats for ' + plugin, error);
+            }
+            return obsidianTotal(plugin);
+          });
         }
       };
     }
