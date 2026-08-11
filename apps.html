@@ -52,6 +52,11 @@
             </a>
           </li>
           <li class="nav-item active">
+            <a class="nav-link" href="htmlTableToolbar.html">HTML Table Toolbar
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="cloakClip.html">CloakClip
               <span class="sr-only">(current)</span>
             </a>
@@ -86,16 +91,22 @@
     <!-- /.row -->
 
     <!--
-      Adding a live download count to another app:
+      Adding a live download count to another app - one span, nothing else.
+
+      An app we release as a downloadable file, counted by GitHub:
 
         <span class="h3 mb-0 downloadCount"
               data-repo="Charette-AI-Group/<repo>"
               data-assets="<regex matched against each asset file name>">&mdash;</span>
 
-      js/downloadCounts.js finds every [data-repo] element on the page, sums
-      download_count across all releases for the assets that match, and caches
-      the result for six hours. Nothing else needs to change. See the note at
-      the bottom of this page for what these numbers do and do not include.
+      An Obsidian plugin, counted by Obsidian itself:
+
+        <span class="h3 mb-0 downloadCount"
+              data-obsidian-plugin="<plugin id>">&mdash;</span>
+
+      js/downloadCounts.js picks the source from whichever attribute is
+      present. See the note at the bottom of this page for what each number
+      does and does not include.
     -->
 
     <!-- CloakClip -->
@@ -152,11 +163,36 @@
             <h3 class="card-title mb-1">HTML Font Toolbar</h3>
             <p class="text-muted mb-3"><small>Obsidian plugin &middot; in the official community directory</small></p>
             <p class="card-text">A floating, Word-like formatting toolbar for Obsidian notes: colors, highlights, sizes, fonts, alignment and a symbol picker &mdash; all merged into a single clean inline HTML span instead of nested wrappers.</p>
-            <!-- Live count: data-repo="Charette-AI-Group/html-font-toolbar" data-assets="^main\.js$" counts manual
-                 installs only. Installs through the Obsidian directory are counted by Obsidian, not by GitHub. -->
+            <p class="mb-3">
+              <span class="h3 mb-0 downloadCount" data-obsidian-plugin="html-font-toolbar">&mdash;</span>
+              <span class="text-muted">downloads</span>
+            </p>
             <a href="htmlFontToolbar.html" class="btn btn-primary">Find Out More!</a>
             <a href="https://obsidian.md/plugins?id=html-font-toolbar" class="btn btn-outline-primary">Install from the Directory</a>
             <a href="https://github.com/Charette-AI-Group/html-font-toolbar" class="btn btn-outline-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HTML Table Toolbar -->
+    <div class="card mb-4">
+      <div class="row no-gutters align-items-center">
+        <div class="col-md-3">
+          <img class="card-img" src="img/htmlTableToolbarCard.png" alt="The Insert table dialog and the table toolbar in an Obsidian note">
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <h3 class="card-title mb-1">HTML Table Toolbar</h3>
+            <p class="text-muted mb-3"><small>Obsidian plugin &middot; in the official community directory &middot; sister plugin to HTML Font Toolbar</small></p>
+            <p class="card-text">A Word-style toolbar for real HTML tables in Obsidian: add rows and columns, merge and split cells, set header rows, align, control borders per row and per column, and shade individual cells &mdash; none of which a Markdown pipe table can do.</p>
+            <p class="mb-3">
+              <span class="h3 mb-0 downloadCount" data-obsidian-plugin="html-table-toolbar">&mdash;</span>
+              <span class="text-muted">downloads</span>
+            </p>
+            <a href="htmlTableToolbar.html" class="btn btn-primary">Find Out More!</a>
+            <a href="https://obsidian.md/plugins?id=html-table-toolbar" class="btn btn-outline-primary">Install from the Directory</a>
+            <a href="https://github.com/Charette-AI-Group/html-table-toolbar" class="btn btn-outline-secondary">Source</a>
           </div>
         </div>
       </div>
@@ -183,7 +219,7 @@
       <div class="col-md-9 mb-5 mt-4">
         <h2>About These Numbers</h2>
         <hr>
-        <p class="text-muted"><small>Each count is the total of every release download since the app's first version, read live from GitHub's public API when you open this page and remembered in your browser for six hours. It includes the downloads GitHub records for the published files &mdash; and nothing else: a copy of the source taken with the green <b>Code</b> button is counted nowhere, and neither are installs made through the Obsidian plugin directory. A dash means GitHub could not be reached just now, not that the number is zero.</small></p>
+        <p class="text-muted"><small>Each count is a cumulative total since the app's first version, read when you open this page and remembered in your browser so it is not fetched again on every visit. <b>Desktop applications</b> are counted by GitHub: every download of a published release file, which leaves out copies of the source taken with the green <b>Code</b> button, since those are counted nowhere. The <b>Obsidian plugins</b> are counted by Obsidian, which is the honest number for a plugin &mdash; almost everyone installs it from the community directory, and GitHub never sees those. Obsidian publishes a fresh snapshot once a day, so that figure can sit up to a day behind the one on its directory page. A dash means the source could not be reached just now, not that the number is zero.</small></p>
       </div>
     </div>
     <!-- /.row -->
