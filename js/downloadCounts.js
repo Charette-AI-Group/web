@@ -39,22 +39,27 @@
   var PAGE_SIZE = 100;
   var MAX_PAGES = 5;
 
-  // Obsidian's own totals for every community plugin. Their site reads the
-  // same numbers. It is a single ~2 MB file covering all 6000-odd plugins -
-  // there is no per-plugin endpoint - so it is fetched once per page and the
-  // one number we want is cached; the blob itself is never stored. If this
-  // page ever gets real traffic again, the cheaper shape is a daily workflow
-  // in the plugin's own repo writing its count to a small JSON, and pointing
-  // OBSIDIAN_STATS at that instead. Nothing else here would change.
+  // Obsidian's published totals for every community plugin. It is a single
+  // ~2 MB file covering all 6000-odd plugins - there is no per-plugin endpoint
+  // - so it is fetched once per page and only the one number we want is
+  // cached; the blob itself is never stored.
+  //
+  // It is rewritten once a day just after 00:15 UTC, but it does NOT agree
+  // with the figure on community.obsidian.md: measured on 2026-08-11, the file
+  // said 342 and 19 while the directory pages said 393 and 40, and the file
+  // had not moved at all between the 9th and the 10th. So it trails by a day
+  // or two, and proportionally worse for a young plugin. It is still the only
+  // source a browser may read - community.obsidian.md sends no CORS header.
+  // Matching the directory means a daily workflow in each plugin's own repo
+  // reading its page server-side and writing a small JSON, then pointing
+  // OBSIDIAN_STATS at that. Nothing else here would change.
   var OBSIDIAN_STATS =
     'https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugin-stats.json';
 
-  // Anonymous api.github.com allows 60 requests an hour per visitor IP, so a
-  // repeat visitor reads the cache instead of spending another request.
-  var GITHUB_CACHE_MS = 6 * 60 * 60 * 1000;
-  // Obsidian commits a fresh snapshot once a day, a little after 00:15 UTC.
-  // Asking more often than that only re-reads the same numbers.
-  var OBSIDIAN_CACHE_MS = 24 * 60 * 60 * 1000;
+  // Long enough to spare anonymous api.github.com, which allows 60 requests an
+  // hour per visitor IP, and to avoid re-pulling Obsidian's 2 MB file on every
+  // visit - but short enough that a number updated today shows up today.
+  var CACHE_MS = 6 * 60 * 60 * 1000;
 
   function cacheGet(key, maxAge) {
     try {
@@ -159,7 +164,6 @@
       return {
         source: 'obsidian:' + plugin,
         key: 'obsidianDownloads:' + plugin,
-        maxAge: OBSIDIAN_CACHE_MS,
         load: function () {
           return obsidianTotal(plugin);
         }
@@ -173,7 +177,6 @@
       return {
         source: 'github:' + repo,
         key: 'downloadCount:' + repo + ':' + (assets || '*'),
-        maxAge: GITHUB_CACHE_MS,
         load: function () {
           return githubTotal(repo, pattern);
         }
@@ -189,7 +192,7 @@
       return;
     }
 
-    var cached = cacheGet(job.key, job.maxAge);
+    var cached = cacheGet(job.key, CACHE_MS);
     if (cached !== null) {
       show(element, cached);
       return;
