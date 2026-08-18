@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+  shrink-to-fit=no">
+  <meta name="description"
+    content="Free signal processing application and Python library: spectra, transfer functions, coherence, spectrograms and adaptive filtering. Download and run it with no Python installed. Windows, macOS and Linux.">
+  <meta name="author" content="Charette AI Group">
+  <title>pySPWB — Free Signal Processing Work Bench | Charette AI Group</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/business-frontpage.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apps</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="appsDropdown">
+              <a class="dropdown-item" href="pySPWB.html">pySPWB</a>
+              <a class="dropdown-item" href="cloakClip.html">CloakClip</a>
+              <a class="dropdown-item" href="saeCalculator.html">SAE Fractional Calculator</a>
+              <a class="dropdown-item" href="htmlFontToolbar.html">HTML Font Toolbar</a>
+              <a class="dropdown-item" href="htmlTableToolbar.html">HTML Table Toolbar</a>
+              <a class="dropdown-item" href="rvBackupHelper.html">RV Backup Helper</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">pySPWB</h1>
+          <p class="lead mb-5 text-white-50">Measurement signal processing &mdash; spectra, transfer functions, spectrograms and adaptive filtering &mdash; free, and on any machine.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>Objective</h2>
+        <hr>
+        <p>Signal processing software has traditionally been expensive, and tied to the instrument or the licence that came with it. Someone with a recorded vibration, a microphone file, or a hammer test has a straightforward question to ask of it &mdash; and has usually had to buy a seat, or borrow one, before asking. pySPWB removes that step entirely: it is free, open source, and it runs on the machine you already have.</p>
+        <p>It is the successor to the LabVIEW <b>Signal Processing Work Bench</b>, which Charette AI Group open sourced when it reached end of life. Rather than retire the software, it was rebuilt in Python so it could keep growing without LabVIEW &mdash; and it now runs on Windows, macOS and Linux, where the original ran on Windows alone.</p>
+
+        <h3 class="mt-4">Who it is for</h3>
+        <ul>
+          <li><b>Vibration and acoustics engineers</b> &mdash; frequency response of a structure, coherence between a hammer and an accelerometer, sound pressure level in dB against 20&nbsp;&micro;Pa</li>
+          <li><b>Students learning DSP</b> &mdash; where windowing, leakage and averaging stop being formulas and become something you can watch happen</li>
+          <li><b>Teachers and lab courses</b> &mdash; nothing to install and no licence server; every analysis window has a manual that works through data the application generates itself</li>
+          <li><b>Consultants and small companies</b> who cannot justify a measurement software licence, and no longer need one</li>
+          <li><b>Researchers who script</b> &mdash; the whole processing layer is an importable Python library with no user interface attached</li>
+        </ul>
+
+        <h2 class="mt-5">Features</h2>
+        <hr>
+        <p>Five analysis windows that share their signals: send the same measurement to an FFT, a transfer function and a spectrogram at once, and they stay in step as you change what is selected.</p>
+
+        <h3 class="mt-4">Time Data Processing</h3>
+        <ul>
+          <li>Load a measurement, plot it, and condition it: <b>scale and calibrate, offset, resample, truncate, normalise</b></li>
+          <li>Statistics and time-varying metrics beside the plot &mdash; RMS, crest factor, kurtosis, trends</li>
+          <li>Reads <b>HDF5, TDMS, WAV and CSV</b>, plus RPC-III, Nastran punch and HEAD acoustics files</li>
+        </ul>
+
+        <h3 class="mt-4">FFT Analysis</h3>
+        <ul>
+          <li>Averaged auto power spectra with the <b>window, overlap and frequency resolution</b> you choose</li>
+          <li><b>A-weighting</b> and dB references for acoustics, band RMS and energy over a cursor range, harmonic markers</li>
+          <li>Instrument amplitude conventions: a 1&nbsp;V sine reads 1&nbsp;V, and a 94&nbsp;dB calibrator reads 94&nbsp;dB</li>
+        </ul>
+
+        <h3 class="mt-4">Transfer Function</h3>
+        <ul>
+          <li><b>H1 and H2 estimators</b>; magnitude, phase, real and imaginary, Nyquist</li>
+          <li><b>Coherence plotted alongside</b>, so you can see which parts of the response the measurement supports and which are noise dressed up as a resonance</li>
+        </ul>
+
+        <h3 class="mt-4">Time-Frequency</h3>
+        <ul>
+          <li>A <b>colour spectrogram</b> for anything that will not hold still &mdash; run-ups, sweeps, impacts, speech, transients</li>
+          <li>Cursors cut a slice in time or in frequency, and the slice plots as an ordinary spectrum</li>
+        </ul>
+
+        <h3 class="mt-4">Adaptive Filtering</h3>
+        <ul>
+          <li>The <b>LMS family</b> &mdash; plain, normalised, and two noise-cancelling variants &mdash; adapting a filter that subtracts whatever a reference signal can explain</li>
+          <li><b>Convergence is plotted</b>, so you can see whether it worked rather than hope</li>
+        </ul>
+
+        <h3 class="mt-4">Two ways to run it, and neither needs the other</h3>
+        <p>The application and the library are the same code, and you can take whichever half suits you.</p>
+        <ul>
+          <li><b>Download and run</b> &mdash; the program, the Python it runs on and every library it needs, in one folder. No Python to install, no packages, no administrator rights, no installer. Unzip it and run it.</li>
+          <li><b>pip install spwb</b> &mdash; for notebooks, scripting and Linux. One wheel for all three operating systems, Python 3.10 or newer, and the library imports with no user-interface code anywhere near it.</li>
+        </ul>
+
+        <h3 class="mt-4">The numbers are not approximations</h3>
+        <p>A signal processing tool is only worth having if you can quote what it prints. pySPWB's results are pinned to reference data generated by driving <b>LabVIEW 2022 itself</b>, and that comparison runs automatically on every change &mdash; so a spectrum, transfer function or spectrogram you obtained with the original LabVIEW software still comes out the same here.</p>
+        <p>Its native file format is plain <b>HDF5</b>, an open standard that MATLAB, Julia, R and HDFView read without pySPWB installed, so measurements never become hostage to the tool that recorded them. Every downloadable build is checked on its own platform before release: it has to open all five analysis windows, write and re-read an HDF5 file, and return the right numbers for a spectrum and a transfer function, or it is not published.</p>
+
+        <h2 class="mt-5">Download</h2>
+        <hr>
+        <p>Free standalone application &mdash; one folder, no installation and no Python required.</p>
+        <a href="https://github.com/Charette-AI-Group/pySPWB/releases/latest" class="btn btn-primary">Download for Windows</a>
+        <a href="https://github.com/Charette-AI-Group/pySPWB/releases/latest" class="btn btn-primary">Download for macOS</a>
+        <a href="https://github.com/Charette-AI-Group/pySPWB" class="btn btn-secondary">Source on GitHub</a>
+        <p class="text-muted mt-3"><small>Both buttons bring you to the GitHub release page: scroll down to the <b>Assets</b> section and click <b>SPWB-windows-x64.zip</b> for Windows, or <b>SPWB-macos-apple-silicon.zip</b> / <b>SPWB-macos-intel.zip</b> for macOS. Unzip the whole folder and keep it together &mdash; the program needs the files beside it.</small></p>
+        <p class="text-muted"><small>On Linux, or to use it as a library in a notebook, install it from PyPI instead: <code>pip install spwb[gui]</code> for the application, or <code>pip install spwb</code> for the library alone.</small></p>
+        <p class="text-muted"><small>Windows may show a SmartScreen notice on first run because the download is unsigned; choose &ldquo;More info&rdquo;, then &ldquo;Run anyway&rdquo;. On macOS, right-click the app and choose &ldquo;Open&rdquo; the first time. Every release also carries a <b>SPWB-checksums.txt</b> so you can verify exactly what you downloaded.</small></p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border" src="img/pySPWBScreenshot.png" alt="The pySPWB FFT Analysis window showing a spectrum with harmonic markers">
+        <a href="https://charette-ai-group.github.io/pySPWB/" class="btn btn-primary btn-block mt-3">Visit the pySPWB Site</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Screenshots of all five analysis windows, and the user manuals.</small></p>
+        <a href="https://pypi.org/project/spwb/" class="btn btn-outline-primary btn-block mt-3">The Library on PyPI</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>For notebooks and scripts: <code>pip install spwb</code></small></p>
+        <a href="https://github.com/Charette-AI-Group/SPWB" class="btn btn-outline-secondary btn-block mt-3">The Original LabVIEW SPWB</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Open sourced when it reached end of life.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2>Support This Work</h2>
+        <hr>
+        <p>pySPWB is free and open source. There is no licence to buy, no seat to renew, no account to make, and nothing about you is collected or sent anywhere. For measurement software that is unusual &mdash; and it is also why software like this is hard to sustain: there is no subscription to bill and no data to sell, so nothing pays for the work behind it.</p>
+        <p>Signal processing software takes real time to build and, more importantly, to keep alive. Operating systems change, Python and its scientific stack move underneath it, new file formats appear, and features get added because a user asked. A donation, however small, is what makes that continued attention possible &mdash; and it directly funds the next free tool as well as the upkeep of this one.</p>
+        <p>If pySPWB saved you a licence fee, an afternoon, or a measurement you would otherwise have had to repeat, please consider chipping in. It genuinely makes the difference between a project that keeps improving and one that quietly stops.</p>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=FEM4WLD7LHY36" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Donate</a>
+        <p class="text-muted mt-3"><small>Secure payment through PayPal &mdash; no account required, and any amount is appreciated. Thank you for supporting independent, open source software.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Charette AI Group, 2026</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
