@@ -42,3 +42,21 @@ body {
 .pageBanner .lead {
   color: rgba(255, 255, 255, .85);
 }
+
+/* Both banner lines in bold. Bootstrap ships .display-4 and .lead at
+   font-weight 300, which is a light weight chosen to look airy on a white
+   page; over a saturated blue it reads as thin rather than elegant.
+
+   No !important needed here - neither Bootstrap rule carries one, and
+   .pageBanner .display-4 out-ranks .display-4 on specificity alone.
+
+   It helps the contrast work too: at 20px, bold clears WCAG's threshold
+   for large text, so the subtitle now satisfies the relaxed 3:1 bar as
+   well as the 4.5:1 one it already met. Hierarchy between the two lines
+   stays where the previous commit put it - in the size, 3.5rem against
+   1.25rem, which is a wide enough gap to carry it without a weight
+   difference as well. */
+.pageBanner .display-4,
+.pageBanner .lead {
+  font-weight: 700;
+}
