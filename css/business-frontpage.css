@@ -6,3 +6,31 @@
 body {
   padding-top: 56px;
 }
+
+/* ---- page banner --------------------------------------------------------
+   The header band was Bootstrap's .bg-primary (#007bff) carrying a
+   .text-white-50 subtitle. That put the subtitle at a contrast ratio of
+   2.0:1 against its own background - readable only by someone who already
+   knew what it said.
+
+   Raising the subtitle to solid white would not have been a real fix:
+   white on #007bff is itself only 3.98:1, below the 4.5:1 WCAG AA needs
+   for text this size. The <h1> gets away with it purely because display-4
+   is large enough for the relaxed 3:1 threshold. So the band itself had to
+   go darker. #0056b3 is Bootstrap's own darker primary - the shade
+   .btn-primary already uses on hover - so this is the same brand blue
+   rather than a new colour.
+
+       title     white on #0056b3       7.04:1  (was 3.98:1)
+       subtitle  85% white on #0056b3   5.54:1  (was 2.01:1)
+
+   Both clear AA comfortably, and the hierarchy between them is now carried
+   by size and weight, which is where it belongs, instead of by fading the
+   subtitle until it disappears. */
+.pageBanner {
+  background-color: #0056b3;
+}
+
+.pageBanner .lead {
+  color: rgba(255, 255, 255, .85);
+}
