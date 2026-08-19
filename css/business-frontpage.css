@@ -28,7 +28,15 @@ body {
    by size and weight, which is where it belongs, instead of by fading the
    subtitle until it disappears. */
 .pageBanner {
-  background-color: #0056b3;
+  /* !important, and the header keeps .bg-primary beside this class on
+     purpose. Bootstrap's .bg-primary utility is itself !important, so
+     without this it would win and the band would stay the pale blue. The
+     reason for keeping both: if this stylesheet is ever stale in a cache
+     or fails to load, .bg-primary still paints the band and the white
+     title stays readable. On its own, .pageBanner going missing left a
+     white header with white text on it - invisible. A banner should not
+     depend on one file arriving to be legible at all. */
+  background-color: #0056b3 !important;
 }
 
 .pageBanner .lead {
