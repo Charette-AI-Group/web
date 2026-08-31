@@ -39,21 +39,19 @@
   var PAGE_SIZE = 100;
   var MAX_PAGES = 5;
 
-  // A plugin's count comes from its own repo: a daily workflow there reads the
-  // plugin's community directory page server-side - a browser may not, since
-  // community.obsidian.md sends no CORS header - and writes the number to
-  // stats/downloads.json. A few hundred bytes, and it matches the figure on
-  // Obsidian's listing.
+  // A plugin's count comes from its own repo, where a daily workflow copies the
+  // figure out of Obsidian's published statistics into stats/downloads.json.
+  // A few hundred bytes here instead of the 2 MB below.
   var PLUGIN_STATS = 'https://raw.githubusercontent.com/{repo}/main/stats/downloads.json';
 
-  // Fallback when that file is missing or unreadable, e.g. a plugin whose
-  // workflow has not run yet. Obsidian's own published totals for every
-  // community plugin: one ~2 MB file covering all 6000-odd of them, with no
-  // per-plugin endpoint, so it is fetched once per page and only the number we
-  // want is kept; the blob itself is never stored. It is rewritten daily just
-  // after 00:15 UTC but trails the directory badly - measured 2026-08-11 it
-  // read 342 and 19 while the directory said 393 and 40 - which is exactly why
-  // it is the fallback rather than the source.
+  // The same numbers at source, used when a plugin's own record is missing or
+  // unreadable - e.g. its workflow has not run yet. One ~2 MB file covering all
+  // 6000-odd community plugins, with no per-plugin endpoint, so it is fetched
+  // once per page and only the number we want is kept; the blob is never
+  // stored. Obsidian rewrites it daily just after 00:15 UTC, and it trails
+  // their internal counter by a day or two. Their directory page is fresher
+  // but unusable: it rounds above a thousand ("1k"), and it served a frozen
+  // value for weeks when we read it directly.
   var OBSIDIAN_STATS =
     'https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugin-stats.json';
 
@@ -185,8 +183,8 @@
             return obsidianTotal(plugin);
           }
           return pluginRepoTotal(statsRepo)['catch'](function (error) {
-            // The repo's own file is the current number; Obsidian's published
-            // one is stale but always there. Better a low count than a dash.
+            // Same numbers either way - this only covers a repo whose record
+            // is missing, at the cost of the 2 MB file. Better than a dash.
             if (window.console) {
               window.console.warn('downloadCounts: falling back to Obsidian stats for ' + plugin, error);
             }

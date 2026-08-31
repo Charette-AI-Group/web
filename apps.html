@@ -88,9 +88,9 @@
               data-stats-repo="Charette-AI-Group/<repo>">&mdash;</span>
 
       data-stats-repo points at a plugin repo running the daily
-      downloadCount.yml workflow, which writes stats/downloads.json from the
-      plugin's community directory page. Leave it off and the count falls back
-      to Obsidian's own published stats file, which trails by a day or two.
+      downloadCount.yml workflow, which copies the figure out of Obsidian's
+      published statistics into stats/downloads.json. Leave it off and the
+      count is read from that 2 MB file directly instead.
 
       js/downloadCounts.js picks the source from whichever attribute is
       present. See the note at the bottom of this page for what each number
@@ -234,7 +234,7 @@
         <h2>About These Numbers</h2>
         <hr>
         <p class="text-muted"><small>Each count is a cumulative total since the app's first version, read when you open this page and kept in your browser for six hours so it is not fetched again on every visit. <b>Desktop applications</b> are counted by GitHub: every download of a published release file, which leaves out copies of the source taken with the green <b>Code</b> button, since those are counted nowhere. The <b>Obsidian plugins</b> are counted by Obsidian, which is the honest number for a plugin &mdash; almost everyone installs from the community directory, and GitHub never sees those.</small></p>
-        <p class="text-muted"><small>Those plugin figures are the ones on Obsidian's own directory listing. A browser is not allowed to read that page &mdash; it sends no CORS header &mdash; so each plugin's repository reads it once a day from a workflow and records the number, and this page reads that. Obsidian also publishes a statistics file, which would be the obvious source but runs a day or two behind: on 11 August it read 342 and 19 while the directory showed 393 and 40. It is kept only as a fallback, so if a plugin's own record cannot be reached the count still appears, just low. A dash means neither source could be reached, rather than a count of zero.</small></p>
+        <p class="text-muted"><small>Those plugin figures come from the statistics Obsidian publishes, which trail their own counter by a day or two. Each plugin's repository copies its number out of that file once a day, so this page fetches a few hundred bytes rather than the two megabytes it covers; the full file is still read directly if a plugin's own record is missing. The figure on Obsidian's directory page will not match exactly, and above a thousand it cannot &mdash; that page rounds, showing &ldquo;1k&rdquo; where the real total is 951. A dash means neither source could be reached, rather than a count of zero.</small></p>
       </div>
     </div>
     <!-- /.row -->
