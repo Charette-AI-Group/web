@@ -1,8 +1,14 @@
 # CloakClip — development record and handoff
 
-Written 2026-08-10. This is both a changelog for CloakClip and the context a
-new session needs to pick the work up, since conversation history does not
-travel between folders.
+Written 2026-08-10, amended 2026-09-01. This is the context a new session needs
+to pick the work up, since conversation history does not travel between
+folders. It used to double as the changelog; that job now belongs to
+`cloakClipChangelog.html`, which is a real page on the site.
+
+**This file is not published.** The site's workflow excludes it by name,
+because of the local paths, the CI secret and the unfinished work below. Keep
+it that way, and put anything a customer should read in the release notes
+instead.
 
 ---
 
@@ -24,6 +30,7 @@ secret from outliving its use in the Windows clipboard history.
 | App source | `W:\projects\26cloakClip` → [github.com/Charette-AI-Group/cloakClip](https://github.com/Charette-AI-Group/cloakClip) (public) |
 | App site + manual | `docs/` in that repo → https://charette-ai-group.github.io/cloakClip/ |
 | Portfolio page | `cloakClip.html` in this repo → https://charette-ai-group.github.io/web/cloakClip.html |
+| Release notes | `cloakClipChangelog.html` in this repo → https://charette-ai-group.github.io/web/cloakClipChangelog.html — the **public** changelog, linked from the portfolio page. Update it when a version ships |
 | Release binaries | [v1.0.0](https://github.com/Charette-AI-Group/cloakClip/releases/latest) — `CloakClip.exe`, `CloakClip-macos.zip` |
 | Built from | `W:\projects\qtAppTemplate` (PySide6 template) |
 
