@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+  shrink-to-fit=no">
+  <meta name="description"
+    content="CloakClip release notes: what is in each version, which platform it supports, and how each build is verified before it is published.">
+  <meta name="author" content="Charette AI Group">
+  <title>CloakClip Release Notes | Charette AI Group</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/business-frontpage.css?v=3" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apps</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="appsDropdown">
+              <a class="dropdown-item" href="pySPWB.html">pySPWB</a>
+              <a class="dropdown-item" href="cloakClip.html">CloakClip</a>
+              <a class="dropdown-item" href="saeCalculator.html">SAE Fractional Calculator</a>
+              <a class="dropdown-item" href="htmlFontToolbar.html">HTML Font Toolbar</a>
+              <a class="dropdown-item" href="htmlTableToolbar.html">HTML Table Toolbar</a>
+              <a class="dropdown-item" href="rvBackupHelper.html">RV Backup Helper</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary pageBanner py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">CloakClip Release Notes</h1>
+          <p class="lead mb-5">What is in each version, which platform it covers, and how the build you download is checked before it is published.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <p><a href="cloakClip.html">&larr; Back to CloakClip</a></p>
+
+        <h2>Version 1.0.0</h2>
+        <hr>
+        <p class="text-muted"><small>Released 6 August 2026 &middot; Windows and macOS</small></p>
+        <p>The first public release, and a complete one on Windows. CloakClip replaced a pair of personal PowerShell scripts, and it stays <b>wire-compatible with them</b> &mdash; text cloaked by the old scripts still uncloaks here, and the test proving it in both directions is a permanent part of the test suite rather than something checked once.</p>
+
+        <h3 class="mt-4">Two ways to work</h3>
+        <ul>
+          <li><b>Clipboard tab</b> &mdash; copy text, click <b>Cloak Clipboard</b>, paste the result anywhere. The box is editable, so a message can be uncloaked, reworded and re-cloaked without the plain text ever leaving the app</li>
+          <li><b>Manual tab</b> &mdash; a plain field and an encrypted field that stay in sync as you type, with no buttons for either direction. Reading a message this way never touches the clipboard at all</li>
+        </ul>
+
+        <h3 class="mt-4">Keeping secrets out of clipboard history</h3>
+        <p>The feature that took the most work, and the reason the app exists rather than a script.</p>
+        <ul>
+          <li>Decrypted text placed on the clipboard is <b>marked secret</b> using the same mechanism password managers use, so Windows keeps it out of the Win+V panel and out of cloud sync &mdash; while it still pastes normally</li>
+          <li>Text you <b>cloak</b> is tracked too, because whatever app you copied it from had already recorded it before CloakClip ever saw it</li>
+          <li>A copy made again by hand is detected, re-protected, and the recorded entry removed</li>
+          <li>Closing the app clears a copied secret and sweeps the session's secrets from history; <b>Clear All!</b> empties everything as a deliberate second line of defence</li>
+        </ul>
+        <p>The limits are stated in the app as plainly as the features: matching only recognises exact text from the current session, and nothing can reach a secret that has already been pasted somewhere else.</p>
+
+        <h3 class="mt-4">Passwords and comfort</h3>
+        <ul>
+          <li>A <b>password menu</b> holding the last ten, each shown only as its first and last character (<code>h&hellip;!</code>), stored encrypted with Windows DPAPI under <code>%APPDATA%\CloakClip\</code> and clearable at any time</li>
+          <li>A password is remembered <b>only after it actually works</b>, so a typo is never kept</li>
+          <li>Light and dark themes following Windows by default, a window that reopens where you left it, and a single-file executable with nothing to install</li>
+        </ul>
+
+        <h3 class="mt-4">Platform support</h3>
+        <p><b>Windows is fully supported.</b> <b>macOS builds and runs, and encrypts and decrypts identically</b> &mdash; but its clipboard protections are not implemented yet, and the app <b>reports them as unavailable rather than pretending</b>. Nowhere does it claim a protection it cannot provide; where a platform cannot do something, it says so.</p>
+
+        <h3 class="mt-4">How this build was checked</h3>
+        <ul>
+          <li><b>123 automated tests</b>, and a clean lint, before anything is built</li>
+          <li>Windows and macOS builds are produced by CI from a committed build specification, so a release is never assembled by hand on somebody's desk</li>
+          <li>Every build <b>runs its own self-test before it is uploaded</b>. A packaged application can silently lose a bundled component and still start, looking perfectly healthy while a whole protection is missing; the self-test reports what the build actually contains, and CI refuses to publish one that comes up short</li>
+        </ul>
+
+        <h2 class="mt-5">Keeping up with releases</h2>
+        <hr>
+        <p>Every version is published on GitHub with its binaries attached, and this page is updated alongside. If you would rather be told than check, GitHub's <b>Watch &rarr; Custom &rarr; Releases</b> on the repository will email you when a new one appears.</p>
+        <a href="https://github.com/Charette-AI-Group/cloakClip/releases" class="btn btn-primary">All Releases</a>
+        <a href="cloakClip.html" class="btn btn-secondary">Back to CloakClip</a>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border" src="img/cloakClipScreenshot.png" alt="CloakClip main window showing an uncloaked message on the Clipboard tab">
+        <a href="cloakClip.html" class="btn btn-primary btn-block mt-3">About CloakClip</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>What it does, and what people use it for.</small></p>
+        <a href="https://github.com/Charette-AI-Group/cloakClip/releases/latest" class="btn btn-outline-primary btn-block mt-3">Download the Latest</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>A single file for Windows, or a zip for macOS.</small></p>
+        <a href="https://charette-ai-group.github.io/cloakClip/" class="btn btn-outline-secondary btn-block mt-3">Visit the CloakClip Site</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>A quick start guide and the full user manual, tab by tab.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Charette AI Group, 2026</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
