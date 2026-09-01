@@ -1,0 +1,73 @@
+# Publishes charette-ai-group.github.io/web from an artifact this workflow
+# builds, rather than by pointing Pages at the main branch.
+#
+# The branch source is served by a workflow GitHub manages for us, and that one
+# still runs a Jekyll build nobody here asked for - there is no _config.yml, no
+# .nojekyll and not one line of Liquid in the repository, so its only visible
+# effect was deciding which files reached the site. It also carries actions
+# pinned to a deprecated Node, which we cannot update because the workflow is
+# not ours to edit. This replaces the whole arrangement with the deployment the
+# sibling pySPWB and rvBackupHelper repositories already use.
+#
+# The catch worth knowing: Jekyll silently dropped every dot-entry, so
+# .gitignore and .travis.yml were never published. Uploading the checkout
+# as-is would start publishing them, because artifact upload has no such rule -
+# it excludes .git and .github and nothing else. The staging step below keeps
+# them out deliberately, so this migration changes how the site is built and
+# not one byte of what it serves.
+
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# What Pages requires: id-token for the deployment's OIDC claim, pages to
+# write the deployment itself.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time, and never cancel one half-done - a cancelled Pages
+# deployment can leave the site on the previous version with no indication of
+# which.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      # The repository root is the site: plain HTML, one stylesheet, the
+      # download-count script, the images and the vendored Bootstrap and
+      # jQuery. No build step, because nothing here needs one - what is
+      # committed is what is served. Only the dot-entries are held back, to
+      # match what the Jekyll build was already doing.
+      - name: Stage the site
+        run: |
+          mkdir _site
+          rsync -a --exclude='.*' --exclude='_site' ./ _site/
+          echo "Staged for upload:"
+          ls -A _site
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
