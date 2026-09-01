@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1,
   shrink-to-fit=no">
   <meta name="description"
-    content="RV Backup Helper — real-time object detection and distance estimation integrated into RV backup cameras, to help drivers park large recreational vehicles.">
+    content="Free Windows application that puts measured distance lines and a vehicle-width corridor on an RV backup camera. Record behind your own RV, click the distances, and it generates and flashes an Arduino sketch that overlays them on the live picture.">
   <meta name="author" content="Charette AI Group">
-  <title>RV Backup Helper | Charette AI Group</title>
+  <title>RV Backup Helper &mdash; Distance Lines on an RV Backup Camera | Charette AI Group</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
@@ -50,6 +50,7 @@
       <div class="row h-100 align-items-center">
         <div class="col-lg-12">
           <h1 class="display-4 text-white mt-5 mb-2">RV Backup Helper</h1>
+          <p class="lead mb-5">Distance lines and a vehicle-width corridor on an RV backup camera that draws none &mdash; measured from your own coach, not guessed from a template.</p>
         </div>
       </div>
     </div>
@@ -60,14 +61,96 @@
 
     <div class="row">
       <div class="col-md-8 mb-5">
-        <h2>Objectives</h2>
+        <h2>Objective</h2>
         <hr>
-        <p>The purpose of this Artificial Intelligence application is to perform in <i>real time</i> object detections and their relative distance from the vehicle to help the driver backup his typically large recreation vehicle into a camping spot or parking position!</p>
+        <p>An RV backup camera shows a picture and nothing else. There is no way to tell from it whether the post behind you is four feet away or twelve, and the last three feet of a reversing manoeuvre are the ones that cost money. The usual remedy is to replace a perfectly good display with a head unit that draws guide lines &mdash; expensive, and the lines it draws were never measured against <i>your</i> vehicle.</p>
+        <p>RV Backup Helper takes the other route. You measure the real world once, behind your own bumper, and the application turns those measurements into an Arduino sketch that overlays them on the live camera picture. The camera stays, the display stays, and the lines are true because they came from a pole laid in your own driveway.</p>
+
+        <h3 class="mt-4">Who it is for</h3>
+        <ul>
+          <li><b>RV and travel-trailer owners</b> whose factory camera came with the coach and whose factory display draws nothing on it</li>
+          <li><b>Anyone backing onto a hitch</b> &mdash; the 1&nbsp;ft line is drawn heavier than the rest, because it is the &ldquo;about to touch something&rdquo; line</li>
+          <li><b>Long overhangs and fifth wheels</b>, where a generic stick-on guideline assumes a vehicle it has never seen</li>
+          <li><b>Installers and RV techs</b> &mdash; one calibration per coach, saved as a small file, regenerated into a sketch in one click</li>
+          <li><b>Makers and Arduino people</b> &mdash; an Uno, a shield, and about forty dollars of parts; the generated sketch is plain, commented C you can read</li>
+        </ul>
+
+        <h2 class="mt-5">How It Works</h2>
+        <hr>
+        <p>An RV backup camera is analogue composite video &mdash; the same signal television used before HDMI. That is unglamorous, and it is exactly why this works: composite carries brightness and timing on a single wire, so a chip can lock to that timing and inject extra brightness on top <b>without understanding the picture at all</b>. The trick is old. Broadcast character generators did it for captions in the 1970s, and radio-controlled aircraft have used it for decades to put battery voltage over a live camera feed.</p>
+        <p>The alternative &mdash; digitise the video, draw on it, re-encode it &mdash; is easier to write and wrong for this job, because it puts a computer between the driver and the rear view. <b>The analogue overlay adds no stage to the signal path.</b> If the board dies, the camera passes straight through and the driver simply sees no lines: not a frozen frame, not a blank screen.</p>
+
+        <h3 class="mt-4">Capture</h3>
+        <ul>
+          <li><b>Scan Devices</b> finds capture hardware and lists it by its Windows name, so a USB grabber is easy to tell from a webcam</li>
+          <li>A device with nothing plugged into it is listed as <b>no video</b> rather than hidden, and capture started on one begins the moment video arrives &mdash; which is what an RV camera powered only in reverse gear needs</li>
+          <li><b>Arduino Grid: On / Off</b> blanks the shield's overlay over the serial port, so calibration footage is recorded through a clean camera rather than through the grid you are trying to replace</li>
+        </ul>
+
+        <h3 class="mt-4">Calibrate</h3>
+        <ul>
+          <li>Open the recorded clip, step to the frame where your marker is readable, set the distance, and <b>click that spot in the picture</b>; an amber guide is drawn where you clicked</li>
+          <li>Mark the RV's width at each distance too, and the corridor is drawn as a <b>polyline through your points</b> rather than a straight taper &mdash; a wide-angle lens bends what is really a straight path into a curve across the picture</li>
+          <li>Every point records the video frame it came from, because the pole is carried to a new distance for each shot</li>
+          <li>The result is a small <b>JSON file</b>: the one artefact here that cannot be reproduced without another trip to the vehicle</li>
+        </ul>
+
+        <h3 class="mt-4">Generate and upload</h3>
+        <ul>
+          <li><b>Generate Arduino Sketch</b> turns the measurements into C, each row carrying the scan line and frame it came from, so a line that looks wrong on the vehicle can be traced back to the moment it was measured</li>
+          <li><b>Upload to Arduino</b> compiles and flashes it directly &mdash; the Arduino IDE is never required &mdash; and reports the board's own size summary, so you see what actually landed rather than an assumption</li>
+          <li><b>Help &rarr; Check Hardware</b> and <b>Check Toolchain</b> answer &ldquo;will this machine work?&rdquo; before you drive anywhere. The toolchain check <i>compiles something</i>, because every check short of building a sketch once insisted a missing component was installed</li>
+        </ul>
+
+        <h3 class="mt-4">What the grid looks like</h3>
+        <p>Horizontal lines mark the distances you measured, each label set <b>into a break in its own line</b> so there is no doubt which belongs to which. The dashed pair is the width of your RV, drawn through the points you marked. The 1&nbsp;ft line is heavier.</p>
+        <p>The overlay is monochrome, and that is hardware rather than taste: it is one bit per pixel, and NTSC colour would need a subcarrier the microcontroller cannot generate while it is also locking to the camera. Line weight is therefore the only hierarchy available &mdash; and thickness grows downward, so a heavier line never makes an obstacle look closer than it is.</p>
+
+        <h3 class="mt-4">What you need</h3>
+        <ul>
+          <li>An <b>Arduino Uno R3</b> or Duemilanove. It must be an ATmega328P &mdash; <b>not an Uno R4</b>, whose Renesas chip cannot run the hand-written AVR assembly the video library is built from</li>
+          <li>A <b>Nootropic Design Video Experimenter</b> shield, which is the overlay hardware itself</li>
+          <li>A <b>USB video capture dongle</b>, to record the camera onto a PC for the calibration session. It is not needed once the board is flashed and in the vehicle</li>
+          <li>RCA leads, and a long pole with the RV's width marked on it. The pole is the measuring instrument</li>
+        </ul>
+
+        <h3 class="mt-4">What it will not do</h3>
+        <p>It cannot skip the measuring. There is no template, no vehicle database and no guess: the lines exist because you laid a pole behind your own bumper and clicked it. That is an afternoon, once, and it is the whole reason the result is worth trusting.</p>
+        <p>It is also <b>not a proximity sensor and not a warning system</b>. It draws where the ground was when you measured it, on flat ground. A slope, a kerb, or something hanging above the ground is not what the lines describe. It is a better rear view, not a substitute for using it.</p>
+
+        <h2 class="mt-5">Download</h2>
+        <hr>
+        <p>Free Windows installer &mdash; Python is bundled, so there is no prerequisite of any kind.</p>
+        <a href="https://github.com/Charette-AI-Group/rvBackupHelper/releases/latest" class="btn btn-primary">Download for Windows</a>
+        <a href="https://github.com/Charette-AI-Group/rvBackupHelper" class="btn btn-secondary">Source on GitHub</a>
+        <p class="text-muted mt-3"><small>The button brings you to the GitHub release page: scroll down to the <b>Assets</b> section and click <b>rvBackupHelperSetup-1.0.0.exe</b>. The install is <b>per-user</b>, so there is no administrator prompt and nothing lands in Program Files.</small></p>
+        <p class="text-muted"><small>The wizard runs its hardware check on the page after Welcome, <i>before a single file is written</i>, so somebody with no capture device finds out in five seconds rather than after a download. The Arduino AVR core is a tick box at the end &mdash; it is a 295&nbsp;MB download, and only uploading to the board needs it.</small></p>
+        <p class="text-muted"><small>Windows may show a SmartScreen notice on first run because the download is unsigned; choose &ldquo;More info&rdquo;, then &ldquo;Run anyway&rdquo;. The application runs on Windows 10 and 11. The board and the shield, once flashed, have nothing to do with any operating system.</small></p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border" src="img/rvBackupHelperScreenshot.png" alt="The RV Backup Helper Calibrate tab: a recorded frame of the driveway behind an RV, amber distance guides labelled 0 to 24 feet, green width ticks, and a table of the measured scan lines">
+        <a href="https://charette-ai-group.github.io/rvBackupHelper/" class="btn btn-primary btn-block mt-3">Visit the RV Backup Helper Site</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>The whole job walked through in ten steps, with screenshots.</small></p>
+        <a href="https://github.com/Charette-AI-Group/rvBackupHelper/blob/main/docs/manual/README.md" class="btn btn-outline-primary btn-block mt-3">The User Manual</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Five pages: the rig, recording, calibrating, flashing, and the enclosure.</small></p>
+        <a href="https://nootropicdesign.com/ve/" class="btn btn-outline-secondary btn-block mt-3" target="_blank" rel="noopener">The Video Experimenter Shield</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>The overlay hardware, from Nootropic Design. Not ours, but worth reading before ordering.</small></p>
       </div>
     </div>
     <!-- /.row -->
 
-
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2>Support This Work</h2>
+        <hr>
+        <p>RV Backup Helper is free and open source. There is no licence to buy, no seat to renew, no account to make, and nothing about you is collected or sent anywhere. That is also why software like this is hard to sustain: there is no subscription to bill and no data to sell, so nothing pays for the work behind it.</p>
+        <p>Most of what is in this application came from getting it wrong first. A whole calibration session was lost to a grid left switched on, burned into the footage on top of the very markings that needed clicking. A working day went to a video library that compiles perfectly and then leaves the board answering nothing. Those afternoons are the reason the traps are written down in the manual, and the reason the application checks the things it checks before you drive anywhere.</p>
+        <p>If this saved you a new head unit, an installer's afternoon, or a bumper, please consider chipping in. It genuinely makes the difference between a project that keeps improving and one that quietly stops.</p>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=FEM4WLD7LHY36" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Donate</a>
+        <p class="text-muted mt-3"><small>Secure payment through PayPal &mdash; no account required, and any amount is appreciated. Thank you for supporting independent, open source software.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
 
   </div>
   <!-- /.container -->
