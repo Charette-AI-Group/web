@@ -54,12 +54,26 @@ jobs:
       # The repository root is the site: plain HTML, one stylesheet, the
       # download-count script, the images and the vendored Bootstrap and
       # jQuery. No build step, because nothing here needs one - what is
-      # committed is what is served. Only the dot-entries are held back, to
-      # match what the Jekyll build was already doing.
+      # committed is what is served.
+      #
+      # Two things are held back. Dot-entries, because the Jekyll build this
+      # replaced dropped them and .gitignore and .travis.yml have therefore
+      # never been public. And the npm tooling, which had no business being
+      # served at all: gulpfile.js and package.json describe how vendor/ is
+      # refreshed from node_modules and how to run a local preview, so they
+      # stay in the repository and stop being part of the website. The
+      # patterns are anchored with a leading slash so they can only ever match
+      # these three files at the root.
       - name: Stage the site
         run: |
           mkdir _site
-          rsync -a --exclude='.*' --exclude='_site' ./ _site/
+          rsync -a \
+            --exclude='.*' \
+            --exclude='/_site' \
+            --exclude='/package.json' \
+            --exclude='/package-lock.json' \
+            --exclude='/gulpfile.js' \
+            ./ _site/
           echo "Staged for upload:"
           ls -A _site
 
