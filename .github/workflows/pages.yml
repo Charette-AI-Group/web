@@ -56,14 +56,21 @@ jobs:
       # jQuery. No build step, because nothing here needs one - what is
       # committed is what is served.
       #
-      # Two things are held back. Dot-entries, because the Jekyll build this
-      # replaced dropped them and .gitignore and .travis.yml have therefore
-      # never been public. And the npm tooling, which had no business being
-      # served at all: gulpfile.js and package.json describe how vendor/ is
-      # refreshed from node_modules and how to run a local preview, so they
-      # stay in the repository and stop being part of the website. The
-      # patterns are anchored with a leading slash so they can only ever match
-      # these three files at the root.
+      # Held back, in two groups.
+      #
+      # Dot-entries, because the Jekyll build this replaced dropped them and
+      # .gitignore and .travis.yml have therefore never been public. Keeping
+      # them out is what made the move off Jekyll change nothing.
+      #
+      # Then the files that live here but are not website. gulpfile.js and
+      # package.json describe how vendor/ is refreshed from node_modules and
+      # how to run a local preview; cloakClipChangelog.md is linked from
+      # nowhere, on this site or in the CloakClip project. All of them stay in
+      # the repository and none of them are served.
+      #
+      # Every pattern here is anchored with a leading slash, so it matches at
+      # the transfer root and nowhere else - an unanchored package.json would
+      # also silently drop one appearing inside vendor/ later.
       - name: Stage the site
         run: |
           mkdir _site
@@ -73,6 +80,7 @@ jobs:
             --exclude='/package.json' \
             --exclude='/package-lock.json' \
             --exclude='/gulpfile.js' \
+            --exclude='/cloakClipChangelog.md' \
             ./ _site/
           echo "Staged for upload:"
           ls -A _site
