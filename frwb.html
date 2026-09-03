@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+  shrink-to-fit=no">
+  <meta name="description"
+    content="Free batch file renamer that shows every new name before anything changes. Patterns, counters, photo dates from EXIF, conflict detection and undo. Windows and macOS.">
+  <meta name="author" content="Charette AI Group">
+  <title>FRWB — Free Batch File Renamer | Charette AI Group</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/business-frontpage.css?v=3" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apps</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="appsDropdown">
+              <a class="dropdown-item" href="pySPWB.html">pySPWB</a>
+              <a class="dropdown-item" href="cloakClip.html">CloakClip</a>
+              <a class="dropdown-item" href="saeCalculator.html">SAE Fractional Calculator</a>
+              <a class="dropdown-item" href="htmlFontToolbar.html">HTML Font Toolbar</a>
+              <a class="dropdown-item" href="htmlTableToolbar.html">HTML Table Toolbar</a>
+              <a class="dropdown-item" href="rvBackupHelper.html">RV Backup Helper</a>
+              <a class="dropdown-item" href="frwb.html">FRWB</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary pageBanner py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">FRWB</h1>
+          <p class="lead mb-5">Rename a folder full of files &mdash; and see every new name before a single one changes.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>Objective</h2>
+        <hr>
+        <p>Renaming a folder of files is one of those jobs that looks trivial until you try it. Select a hundred photos in Explorer, press F2, and you get <code>photo (1).jpg</code> through <code>photo (100).jpg</code>: it cannot use the date a picture was taken, it cannot keep part of the old name, and it will not show you the result before it happens. Rename tools that can do those things tend to do them blind &mdash; you set up rules, press go, and find out afterwards.</p>
+        <p>The <b>File Rename Processing Workbench</b> is built around the part everything else leaves out: <b>seeing what you are about to do</b>. The left panel is the folder as it is now, the right panel is the same files under the names they would get, and the two stay side by side as you work. Nothing is written until you press Rename Files, that button refuses to light up while any two files would collide, and if the result is still not what you wanted, one menu item puts every file back.</p>
+
+        <h3 class="mt-4">Who it is for</h3>
+        <ul>
+          <li><b>Anyone with a camera</b> &mdash; <code>IMG_4821.JPG</code> tells you nothing; <code>Iceland_20250714_012.JPG</code> sorts by date and says where you were</li>
+          <li><b>People who scan or download in bulk</b> &mdash; strip the junk a scanner or a browser added, then renumber the result from one</li>
+          <li><b>Anyone whose files sort wrongly</b> &mdash; 1, 10, 11, 2 because nobody padded the numbers</li>
+          <li><b>Archivists and record keepers</b> who need a naming convention applied consistently, and checked before it is applied</li>
+          <li><b>Anybody who has renamed the wrong batch once</b> and would like the preview and the undo that would have saved them</li>
+        </ul>
+
+        <h2 class="mt-5">Features</h2>
+        <hr>
+
+        <h3 class="mt-4">Build the name from a pattern</h3>
+        <ul>
+          <li>Eight tokens, each with a button that <b>wears a tick while it is in use</b>: the original name, a counter, several kinds of date, the folder name and the extension</li>
+          <li>Anything you type outside braces is kept exactly as typed, so <code>Holiday_{n}</code> puts a word you chose in front of every file</li>
+          <li><b>Presets</b> for the common shapes, and find-and-replace plus letter case for the text itself</li>
+        </ul>
+
+        <h3 class="mt-4">Counters and dates</h3>
+        <ul>
+          <li>A counter with a <b>start, a step and zero padding</b>, running in whatever order you sort the list &mdash; by name, by created or modified date, or by the date a photo was taken</li>
+          <li>Dates from the file itself, from a date you pick, or read out of the <b>photo's own EXIF data</b></li>
+          <li>A number already in the name, like the 0042 in <code>IMG_0042</code>, can be kept, renumbered, replaced with a date, or removed</li>
+        </ul>
+
+        <h3 class="mt-4">It will not let you make a mess</h3>
+        <ul>
+          <li><b>Conflicts are shown in red</b> before anything happens: two files landing on one name, or a name already taken in the folder</li>
+          <li>Names the system will not accept are flagged too, and <b>Rename Files stays greyed out</b> until every one is resolved</li>
+          <li>Renaming runs in <b>two phases through temporary names</b>, so swapping two names or renumbering a series in place cannot have one rename overwrite a file the next still needs</li>
+          <li>A file unexpectedly in the way is <b>reported and put back, never replaced</b> &mdash; on both Windows and macOS</li>
+          <li><b>Undo the last batch</b> from the File menu</li>
+        </ul>
+
+        <h3 class="mt-4">Nothing leaves your machine</h3>
+        <p>No account, no telemetry, no network. FRWB reads the folder you point it at and nothing else. The only request it ever makes is checking whether the online manual is reachable, and only when you press F1.</p>
+
+        <h2 class="mt-5">Download</h2>
+        <hr>
+        <p>Free, and you do not need Python or anything else installed.</p>
+        <a href="https://github.com/Charette-AI-Group/FRWB/releases/latest" class="btn btn-primary">Download for Windows</a>
+        <a href="https://github.com/Charette-AI-Group/FRWB/releases/latest" class="btn btn-primary">Download for macOS</a>
+        <a href="https://github.com/Charette-AI-Group/FRWB" class="btn btn-secondary">Source on GitHub</a>
+        <p class="text-muted mt-3"><small>Both buttons bring you to the GitHub release page: scroll down to the <b>Assets</b> section. On Windows take <b>frwbSetup-1.0.0.exe</b> to install it, or <b>FRWB-1.0.0-portable.zip</b> if you would rather unzip a folder and run it from anywhere, including a USB stick. On macOS take <b>FRWB-1.0.0-macos.zip</b>, unzip it and move the app to Applications.</small></p>
+        <p class="text-muted"><small>The Windows installer is <b>per-user</b>, so it asks for no administrator rights and installs nothing machine-wide. On macOS, right-click the app and choose &ldquo;Open&rdquo; the first time, because the download is unsigned. Every build is produced by a public workflow straight from the source and checks itself &mdash; that it kept its icons and its manual, and that it starts &mdash; before it is published.</small></p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border" src="img/frwbScreenshot.png" alt="The FRWB window: a folder of photos on the left, the names they would get on the right">
+        <a href="https://charette-ai-group.github.io/FRWB/" class="btn btn-primary btn-block mt-3">Visit the FRWB Site</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Screenshots and the full user manual.</small></p>
+        <a href="https://github.com/Charette-AI-Group/FRWB/releases/latest" class="btn btn-outline-primary btn-block mt-3">All Downloads</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Installer, portable zip and the macOS app.</small></p>
+        <a href="https://github.com/Charette-AI-Group/FRWB/blob/main/docs/manual/README.md" class="btn btn-outline-secondary btn-block mt-3">Read the Manual</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Also on F1 inside the application.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2>Support This Work</h2>
+        <hr>
+        <p>FRWB is free and open source. There is no licence to buy, no account to make, no ads, and nothing about you is collected or sent anywhere. That is also why software like this is hard to sustain: there is no subscription to bill and no data to sell, so nothing pays for the work behind it.</p>
+        <p>The hard part of a renaming tool is not writing it, it is keeping it trustworthy. Windows and macOS shift underneath it, the libraries it is built on move on, camera makers invent another way of storing the date a photo was taken, and every so often a real folder breaks an assumption that looked safe. Adding the macOS build to this one turned up a case where a rename could have replaced a file instead of refusing &mdash; found, fixed and covered by a test before anyone met it. That is the kind of attention a donation pays for, and it funds the next free tool as well as the upkeep of this one.</p>
+        <p>If FRWB saved you an evening of renaming files by hand, or caught a clash before it cost you an original, please consider chipping in.</p>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=FEM4WLD7LHY36" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Donate</a>
+        <p class="text-muted mt-3"><small>Secure payment through PayPal &mdash; no account required, and any amount is appreciated. Thank you for supporting independent, open source software.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Charette AI Group, 2026</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
