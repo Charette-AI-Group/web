@@ -67,8 +67,8 @@ jobs:
       # how to run a local preview; cloakClipHandoff.md is the development
       # record a new session reads to pick the work up, and it carries local
       # paths and CI secret names that have no business on a public site. The
-      # release notes a visitor wants are cloakClipChangelog.html, which is
-      # website and is served. All of these stay in the repository.
+      # release notes a visitor wants are on the GitHub releases, beside the
+      # binaries they describe. All of these stay in the repository.
       #
       # Every pattern here is anchored with a leading slash, so it matches at
       # the transfer root and nowhere else - an unanchored package.json would
