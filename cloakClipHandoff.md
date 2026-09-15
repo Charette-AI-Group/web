@@ -31,7 +31,7 @@ secret from outliving its use in the Windows clipboard history.
 | App site + manual | `docs/` in that repo → https://charette-ai-group.github.io/cloakClip/ |
 | Portfolio page | `cloakClip.html` in this repo → https://charette-ai-group.github.io/web/cloakClip.html |
 | Release notes | The [GitHub releases](https://github.com/Charette-AI-Group/cloakClip/releases) — written as the annotated tag's message when a version ships, so the notes and the binaries arrive together. There is no separate changelog page any more |
-| Release binaries | [v1.0.0](https://github.com/Charette-AI-Group/cloakClip/releases/latest) — `CloakClip.exe`, `CloakClip-macos.zip` |
+| Release binaries | [Latest release](https://github.com/Charette-AI-Group/cloakClip/releases/latest) — `CloakClipSetup-<version>.exe` (Windows installer, since v1.0.2), `CloakClip.exe` (portable), `CloakClip-macos.zip`, `CloakClip-checksums.txt` |
 | Built from | `W:\projects\qtAppTemplate` (PySide6 template) |
 
 ## Current state — v1.0.0
