@@ -5,10 +5,13 @@ to pick the work up, since conversation history does not travel between
 folders. It used to double as the changelog. That job now belongs to the GitHub
 releases, where the notes sit beside the binaries they describe.
 
-**This file is not published.** The site's workflow excludes it by name,
-because of the local paths, the CI secret and the unfinished work below. Keep
-it that way, and put anything a customer should read in the release notes
-instead.
+**This file is public in the repository, but kept off the website.** The
+site's Pages workflow (`.github/workflows/pages.yml`) excludes it by name, so
+it never appears on charette-ai-group.github.io, but anyone browsing
+github.com/Charette-AI-Group/web can read it. It holds local folder paths,
+the *name* of a CI secret and the unfinished work below: never write a
+secret's value, a password or a token into it. Put anything a customer
+should read in the release notes instead.
 
 ---
 
