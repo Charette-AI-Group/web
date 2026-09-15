@@ -1,6 +1,6 @@
 # CloakClip — development record and handoff
 
-Written 2026-08-10, amended 2026-09-01. This is the context a new session needs
+Written 2026-08-10, amended 2026-09-01 and 2026-09-14. This is the context a new session needs
 to pick the work up, since conversation history does not travel between
 folders. It used to double as the changelog. That job now belongs to the GitHub
 releases, where the notes sit beside the binaries they describe.
@@ -30,18 +30,33 @@ secret from outliving its use in the Windows clipboard history.
 | App source | `W:\projects\26cloakClip` → [github.com/Charette-AI-Group/cloakClip](https://github.com/Charette-AI-Group/cloakClip) (public) |
 | App site + manual | `docs/` in that repo → https://charette-ai-group.github.io/cloakClip/ |
 | Portfolio page | `cloakClip.html` in this repo → https://charette-ai-group.github.io/web/cloakClip.html |
-| Release notes | The [GitHub releases](https://github.com/Charette-AI-Group/cloakClip/releases) — written as the annotated tag's message when a version ships, so the notes and the binaries arrive together. There is no separate changelog page any more |
+| Release notes | The [GitHub releases](https://github.com/Charette-AI-Group/cloakClip/releases) — the annotated tag's message, which the release job publishes as the notes (since `16a2bc0`; 1.0.1 and 1.0.2 were set from their tags by hand, 1.0.0 shows its pull-request list), so the notes and the binaries arrive together. Tag with `--cleanup=whitespace -F notes.md` when the notes have Markdown headings. There is no separate changelog page any more |
 | Release binaries | [Latest release](https://github.com/Charette-AI-Group/cloakClip/releases/latest) — `CloakClipSetup-<version>.exe` (Windows installer, since v1.0.2), `CloakClip.exe` (portable), `CloakClip-macos.zip`, `CloakClip-checksums.txt` |
 | Built from | `W:\projects\qtAppTemplate` (PySide6 template) |
 
-## Current state — v1.0.0
+## Current state — v1.0.2
 
-Released 2026-08-06. 123 tests, ruff clean, both platforms built and
-published by CI.
+Released 2026-09-14. 128 tests, ruff clean, both platforms built and
+published by CI. Earlier releases: 1.0.0 (2026-08-06, the first) and 1.0.1
+(2026-08-16, a Donate button in Help > About). 1.0.2 added the Windows
+installer and a SHA-256 checksum file on every release; the app itself did
+not change.
 
-**Windows is fully supported. macOS builds and runs**, but its clipboard
-protections are not implemented — the app reports them as unavailable rather
-than pretending. The port is scoped in the repo's `AGENTS.md`.
+**Windows is fully supported**, two ways: `CloakClipSetup-<version>.exe`, a
+per-user installer with no administrator prompt, or the portable
+`CloakClip.exe`. Uninstalling deliberately leaves `%APPDATA%\CloakClip`
+(settings and the DPAPI-encrypted passwords) in place.
+
+**macOS builds and runs**, but its clipboard protections are not
+implemented — the app reports them as unavailable rather than pretending.
+The port is scoped in the repo's `AGENTS.md`. One macOS defect is open:
+[issue #7](https://github.com/Charette-AI-Group/cloakClip/issues/7), a
+segfault during interpreter teardown after the app exits. Clipboard cleanup
+and the secret sweep run before that point, so nothing is left unprotected;
+the cost is a crash dialog and a wrong exit status.
+
+Unreleased on `main` since 1.0.2: the release job now publishes the tag's
+message as the notes (`16a2bc0`). No change to the app.
 
 ---
 
@@ -62,7 +77,8 @@ than pretending. The port is scoped in the repo's `AGENTS.md`.
   DPAPI-encrypted in `%APPDATA%\CloakClip\`. Remembered only after a
   password actually works, so typos are never kept.
 - **Theme** (system/light/dark), remembered **window position**, generated
-  **icon**, single-file **executable**.
+  **icon**, and on Windows both an **installer** and a portable single-file
+  **executable**.
 
 ### Keeping secrets out of Windows clipboard history
 
@@ -86,9 +102,13 @@ pasted somewhere else.
 ### Infrastructure
 
 - **CI** (`.github/workflows/build.yml`) — tests and lints, builds Windows
-  `.exe` and macOS `.app` from the committed `cloakClip.spec`, runs
-  `--selftest` on each build before upload, and attaches both to a Release
-  on `v*` tags.
+  `.exe` and macOS `.app` from the committed `cloakClip.spec`, and runs
+  `--selftest` on each build. It then builds the Windows installer
+  (`tools/buildInstaller.py`, `installer/cloakClip.iss`) from a one-folder
+  build of the same spec (`CLOAKCLIP_ONEDIR=1`), and proves it by
+  installing it silently, self-testing the installed copy and uninstalling
+  it. On `v*` tags it attaches everything to a Release with
+  `CloakClip-checksums.txt`, using the tag's message as the notes.
 - **Traffic recorder** (`.github/workflows/traffic.yml`) — weekly snapshot of
   clone/view stats into `traffic/traffic.csv`, because GitHub discards
   anything older than 14 days.
@@ -137,6 +157,19 @@ Each of these looked correct in code and was wrong in reality:
 - **The default `GITHUB_TOKEN` cannot read the traffic API** (403,
   "Resource not accessible by integration"). A PAT with repository
   Administration:read is required, stored as the `TRAFFIC_TOKEN` secret.
+- **Inno Setup's `MsgBox` ignores `/SUPPRESSMSGBOXES`.** The "appears to be
+  running" prompt would hang a silent install waiting for an invisible
+  click. Use `SuppressibleMsgBox` with a default answer. The SAE Calculator
+  and FRWB installers had the same bug (fixed in their 1.2.2 and 1.0.1).
+- **Test an installer with a throwaway `AppId`.** The real one is shared
+  with any copy already installed on the machine, and so is the Start menu
+  folder name, so a test install and uninstall would take over, then
+  delete, the real install's uninstall entry and shortcuts. Change `AppId`,
+  `DefaultGroupName`, `UninstallDisplayName` and `OutputBaseFilename` in a
+  temporary copy of the `.iss`.
+- **`git tag` deletes lines starting with `#`** unless the tag is made with
+  `--cleanup=whitespace`, which would silently strip the Markdown headings
+  from release notes written in the tag.
 
 ## Outstanding
 
@@ -144,8 +177,12 @@ Each of these looked correct in code and was wrong in reality:
   `org.nspasteboard.ConcealedType` convention via PyObjC) and a
   Keychain-backed password store. Fully scoped in the repo's `AGENTS.md`,
   including the Universal Clipboard exposure that has no Windows equivalent.
-- Two failed **build** workflow runs from the GitHub outage remain in the
-  history and could be deleted.
+- Two harmless runs sit in cloakClip's Actions history and could be
+  deleted: the Pages deployment that stuck in `queued` during the outage
+  and was cancelled (`31127320441`), and the first CI build, which failed
+  before Windows was made to wait for the self-test (`30754237462`). An
+  earlier version of this note called them two failed builds from the
+  outage; checked 2026-09-14, that was wrong.
 - The `github-pages` environment has a protection rule. It was not the cause
   of the stuck deployment, but worth a look if deploys ever hang again.
 
