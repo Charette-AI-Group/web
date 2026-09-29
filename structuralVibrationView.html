@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+  shrink-to-fit=no">
+  <meta name="description"
+    content="Free teaching software that animates how a beam, a plate or a spring-mass oscillator deflects while it vibrates, in a 3D view you can rotate while it moves. Natural frequencies computed from the dimensions and the material. Windows and macOS.">
+  <meta name="author" content="Charette AI Group">
+  <title>Structural Vibration View — See a Structure Vibrate in 3D | Charette AI Group</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/business-frontpage.css?v=3" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apps</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="appsDropdown">
+              <a class="dropdown-item" href="saeCalculator.html">SAE Fractional Calculator</a>
+              <a class="dropdown-item" href="cloakClip.html">CloakClip</a>
+              <a class="dropdown-item" href="frwb.html">FRWB</a>
+              <a class="dropdown-item" href="pySPWB.html">pySPWB</a>
+              <a class="dropdown-item" href="structuralVibrationView.html">Structural Vibration View</a>
+              <a class="dropdown-item" href="rvBackupHelper.html">RV Backup Helper</a>
+              <a class="dropdown-item" href="htmlFontToolbar.html">HTML Font Toolbar</a>
+              <a class="dropdown-item" href="htmlTableToolbar.html">HTML Table Toolbar</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary pageBanner py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">Structural Vibration View</h1>
+          <p class="lead mb-5">Watch a structure bend while it vibrates &mdash; in 3D, slowly enough to follow, from any angle.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>Objective</h2>
+        <hr>
+        <p>A mode shape in a textbook is a frozen curve with arrows on it. You are told the beam waves like that, at some frequency, and you are left to imagine the motion. Most people never quite do &mdash; and the ones who do often end up carrying a picture that is subtly wrong, because the drawing shows the extreme and never the moment in between.</p>
+        <p><b>Structural Vibration View</b> exists to replace that drawing with the motion itself. Pick a beam, a plate or a spring on a mass, give it dimensions and a material, and watch it deflect in a 3D view you can rotate, pan and zoom <i>while it is moving</i>. The frequencies are not typed in: they are computed from the size and the material you chose, so making the beam thicker changes both what you see and what it says.</p>
+
+        <h3 class="mt-4">Who it is for</h3>
+        <ul>
+          <li><b>Students</b> meeting mode shapes for the first time, who need to see one move before the algebra means anything</li>
+          <li><b>Anyone teaching vibration</b> who would rather show a structure bending than draw another diagram</li>
+          <li><b>Engineers</b> wanting a quick, honest feel for how a shape and a material set the frequencies</li>
+          <li><b>Researchers</b> checking intuition against closed-form theory before reaching for a finite element model</li>
+          <li><b>Anybody building something</b> &mdash; including in a garage &mdash; who wants to know how their part is likely to move</li>
+        </ul>
+
+        <h2 class="mt-5">Features</h2>
+        <hr>
+
+        <h3 class="mt-4">Three families of structure</h3>
+        <ul>
+          <li><b>Beams</b> &mdash; cantilever, simply supported, and clamped at both ends</li>
+          <li><b>Plates</b> &mdash; simply supported, and clamped on all four edges</li>
+          <li><b>A spring-mass oscillator</b>, for the single-mode case everything else gets compared against</li>
+          <li>The controls show <b>only the parameters that family uses</b>, so a plate never asks for something only a beam needed</li>
+        </ul>
+
+        <h3 class="mt-4">Frequencies that come from the structure</h3>
+        <ul>
+          <li><b>Euler-Bernoulli</b> theory for the beams and <b>Kirchhoff</b> for the plates, using Warburton&rsquo;s formula for the clamped one &mdash; within about 1&nbsp;% of the published values</li>
+          <li>Change a thickness, a length or the material and <b>every frequency follows</b>, immediately</li>
+          <li>Ten <b>material presets</b> &mdash; aluminium, steel, stainless, titanium, copper, brass, glass, concrete, acrylic, polycarbonate &mdash; or type in your own density, Young&rsquo;s modulus and Poisson&rsquo;s ratio</li>
+        </ul>
+
+        <h3 class="mt-4">Slow enough to actually watch</h3>
+        <ul>
+          <li>Real modes run from tens of hertz into the kilohertz, far too fast to see. At <b>Speed 1&times;, mode 1 always takes two seconds per cycle</b> whatever it truly runs at, so a high mode is as watchable as a low one</li>
+          <li>The clock still reads <b>real structural time</b>, so slowing the motion down never hides what the numbers say</li>
+          <li><b>Rotate it while it moves</b> &mdash; drag to orbit, or jump straight to the X-Z, X-Y and Y-Z planes</li>
+          <li>Colour shows <b>displacement on a fixed scale</b>, so a colour means the same thing from one frame to the next, over a grey wireframe of the structure at rest</li>
+        </ul>
+
+        <h3 class="mt-4">One mode, or three at once</h3>
+        <ul>
+          <li>The <b>Structure Parameters</b> tab animates a single mode, undamped, with its frequency beside it</li>
+          <li>The <b>Modal Superposition</b> tab adds up to three modes together, each with its own amplitude and phase, plus a <b>damping ratio</b> so the motion decays the way a real structure does</li>
+          <li>Whichever tab is open is what the view animates, so switching between them is the comparison</li>
+        </ul>
+
+        <h3 class="mt-4">Keep what you set up</h3>
+        <ul>
+          <li><b>File &rarr; Save</b> writes the structure, both tabs, the playback state and the camera angle to a readable <code>.tvv</code> file, and <b>File &rarr; Open</b> puts it all back &mdash; so a demonstration can be prepared once and reopened in front of a class</li>
+          <li>Dimensions, material, selected mode, window position and theme are <b>remembered between sessions</b></li>
+        </ul>
+
+        <h3 class="mt-4">What it is not</h3>
+        <p>This is teaching software, and it says so rather than implying otherwise. Every structure is <b>uniform</b>, every result comes from <b>closed-form theory</b>, and there are no holes, joints, stiffeners or applied loads. It will show you how a shape wants to move and roughly how fast &mdash; it will not tell you whether your actual part survives, and it is not a replacement for a finite element model of a real component.</p>
+        <p>Nothing leaves your machine: no account, no telemetry, and no network use beyond opening the online manual if you ask for it.</p>
+
+        <h2 class="mt-5">Download</h2>
+        <hr>
+        <p>Free, and you do not need Python or anything else installed. Version 0.1.0.</p>
+        <a href="https://github.com/Charette-AI-Group/structuralVibrationView/releases/latest" class="btn btn-primary">Download for Windows</a>
+        <a href="https://github.com/Charette-AI-Group/structuralVibrationView/releases/latest" class="btn btn-primary">Download for macOS</a>
+        <a href="https://github.com/Charette-AI-Group/structuralVibrationView" class="btn btn-secondary">Source on GitHub</a>
+        <p class="text-muted mt-3"><small>Both buttons bring you to the GitHub release page: scroll down to the <b>Assets</b> section. On Windows take <b>structuralVibrationViewSetup-0.1.0.exe</b> to install it, or <b>StructuralVibrationView-0.1.0-portable.zip</b> if you would rather unzip a folder and run it from anywhere. On macOS take <b>StructuralVibrationView-0.1.0-macos.zip</b>, unzip it and move the app to Applications. These are large downloads &mdash; 110&nbsp;MB to 180&nbsp;MB &mdash; because the whole 3D engine ships inside them.</small></p>
+        <p class="text-muted"><small>The Windows installer is <b>per-user</b>, so it asks for no administrator rights and installs nothing machine-wide. On macOS the bundle is not notarised, so right-click the app and choose &ldquo;Open&rdquo; the first time rather than double-clicking. Every build is produced by a public workflow straight from the source, and is asked whether it kept its icons and its manual and can still build the real 3D view before it is published &mdash; a check worth having, because that engine is loaded by name rather than imported, so a bundle which quietly dropped it would start perfectly and then show an empty panel where the structure should be.</small></p>
+        <p class="text-muted"><small>The first start takes a couple of seconds while the 3D engine loads, behind a splash screen.</small></p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border" src="img/structuralVibrationViewScreenshot.png" alt="A cantilever beam bending in the 3D view, with mode amplitudes, a damping ratio and playback controls beside it">
+        <a href="https://charette-ai-group.github.io/structuralVibrationView/" class="btn btn-primary btn-block mt-3">Visit the Structural Vibration View Site</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Screenshots of every structure, and the downloads.</small></p>
+        <a href="https://github.com/Charette-AI-Group/structuralVibrationView/releases/latest" class="btn btn-outline-primary btn-block mt-3">All Downloads</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Installer, portable zip and the macOS app.</small></p>
+        <a href="https://github.com/Charette-AI-Group/structuralVibrationView/blob/main/docs/manual/README.md" class="btn btn-outline-secondary btn-block mt-3">Read the Manual</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Also on F1 inside the application.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2>Support This Work</h2>
+        <hr>
+        <p>Structural Vibration View is free and open source. There is no licence to buy, no account to make, no ads, and nothing about you is collected or sent anywhere. That is also why software like this is hard to sustain: there is no subscription to bill and no data to sell, so nothing pays for the work behind it.</p>
+        <p>Teaching software has to be right in a way a convenience tool does not. A renaming tool that misbehaves costs somebody an afternoon; a mode shape that is subtly wrong teaches somebody something false, and they may carry it for years. So the frequencies here are checked against published values rather than assumed, the honest limits are written on the screen instead of left out, and the awkward parts &mdash; packaging a 3D engine a build can silently lose, keeping a clamped plate within a percent of the literature &mdash; get the attention they need rather than the attention they would deserve commercially. A donation is what pays for that, and it funds the next free tool as well as the upkeep of this one.</p>
+        <p>If this made a mode shape finally make sense to you, or saved you explaining one at a whiteboard yet again, please consider chipping in.</p>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=FEM4WLD7LHY36" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Donate</a>
+        <p class="text-muted mt-3"><small>Secure payment through PayPal &mdash; no account required, and any amount is appreciated. Thank you for supporting independent, open source software.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Charette AI Group, 2026</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
