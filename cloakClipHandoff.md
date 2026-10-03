@@ -1,6 +1,6 @@
 # CloakClip — development record and handoff
 
-Written 2026-08-10, amended 2026-09-01 and 2026-09-14. This is the context a new session needs
+Written 2026-08-10, amended 2026-09-01, 2026-09-14 and 2026-10-03. This is the context a new session needs
 to pick the work up, since conversation history does not travel between
 folders. It used to double as the changelog. That job now belongs to the GitHub
 releases, where the notes sit beside the binaries they describe.
@@ -160,6 +160,19 @@ Each of these looked correct in code and was wrong in reality:
 - **The default `GITHUB_TOKEN` cannot read the traffic API** (403,
   "Resource not accessible by integration"). A PAT with repository
   Administration:read is required, stored as the `TRAFFIC_TOKEN` secret.
+- **That PAT expires, and regenerating it is only half the fix.** GitHub
+  emails when it lapses. Regenerating mints a new value, which then has to
+  be written into the `TRAFFIC_TOKEN` secret of *both* cloakClip and FRWB
+  (`gh secret set TRAFFIC_TOKEN --repo Charette-AI-Group/<repo>`). Tell the
+  two failures apart by the status: 403 "Resource not accessible by
+  integration" is a valid token missing the permission, 401 "Bad
+  credentials" is an expired or mistyped one. Confirm the save landed
+  before rerunning anything —
+  `gh api repos/Charette-AI-Group/<repo>/actions/secrets/TRAFFIC_TOKEN --jq .updated_at`
+  — because on 2026-10-03 the token was regenerated while both secrets kept
+  their old value, and only that timestamp showed it. Nothing is lost if it
+  is fixed within about a week: the API still serves the last 14 days, and
+  a rerun backfills the missed days.
 - **Inno Setup's `MsgBox` ignores `/SUPPRESSMSGBOXES`.** The "appears to be
   running" prompt would hang a silent install waiting for an invisible
   click. Use `SuppressibleMsgBox` with a default answer. The SAE Calculator
