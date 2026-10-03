@@ -193,12 +193,6 @@ Each of these looked correct in code and was wrong in reality:
   `org.nspasteboard.ConcealedType` convention via PyObjC) and a
   Keychain-backed password store. Fully scoped in the repo's `AGENTS.md`,
   including the Universal Clipboard exposure that has no Windows equivalent.
-- Two harmless runs sit in cloakClip's Actions history and could be
-  deleted: the Pages deployment that stuck in `queued` during the outage
-  and was cancelled (`31127320441`), and the first CI build, which failed
-  before Windows was made to wait for the self-test (`30754237462`). An
-  earlier version of this note called them two failed builds from the
-  outage; checked 2026-09-14, that was wrong.
 - The `github-pages` environment has a protection rule. It was not the cause
   of the stuck deployment, but worth a look if deploys ever hang again.
 
