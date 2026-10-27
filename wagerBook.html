@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+  shrink-to-fit=no">
+  <meta name="description"
+    content="Free desktop app that keeps every Kalshi and Polymarket wager in one book: stake, odds, max win, what each is worth now, and what every closed wager actually paid. Your book stays on your own machine. Windows and macOS.">
+  <meta name="author" content="Charette AI Group">
+  <title>Wager Book — Every Kalshi and Polymarket Wager in One Book | Charette AI Group</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/business-frontpage.css?v=3" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apps</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="appsDropdown">
+              <a class="dropdown-item" href="saeCalculator.html">SAE Fractional Calculator</a>
+              <a class="dropdown-item" href="cloakClip.html">CloakClip</a>
+              <a class="dropdown-item" href="frwb.html">FRWB</a>
+              <a class="dropdown-item" href="pySPWB.html">pySPWB</a>
+              <a class="dropdown-item" href="structuralVibrationView.html">Structural Vibration View</a>
+              <a class="dropdown-item" href="wagerBook.html">Wager Book</a>
+              <a class="dropdown-item" href="rvBackupHelper.html">RV Backup Helper</a>
+              <a class="dropdown-item" href="htmlFontToolbar.html">HTML Font Toolbar</a>
+              <a class="dropdown-item" href="htmlTableToolbar.html">HTML Table Toolbar</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary pageBanner py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">Wager Book</h1>
+          <p class="lead mb-5">Every wager you place on Kalshi and Polymarket, kept in one book &mdash; open, closed, and what each one actually paid.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>Objective</h2>
+        <hr>
+        <p>Each prediction market site shows you its own positions, in its own words, on its own page. A wager that closes slips off into a history list you have to go looking for, and neither site can tell you the one thing you actually want to know: <b>how you are doing across both of them</b>.</p>
+        <p><b>Wager Book</b> is the record the sites do not keep for you. One table holds every wager from both platforms side by side &mdash; what you staked, the odds you got, the most it can pay, what it is worth today, and, once it is over, what it really paid. It is a book you keep, not an account you log into.</p>
+
+        <h3 class="mt-4">Who it is for</h3>
+        <ul>
+          <li><b>Anyone with wagers on both Kalshi and Polymarket</b>, tired of adding two portfolio pages together in their head</li>
+          <li><b>Anyone who wants an honest running total</b> &mdash; win rate and realised profit or loss across everything closed, not just what is open today</li>
+          <li><b>People who keep records</b> for tax time, for a spreadsheet, or simply to see whether a hunch has actually been paying</li>
+          <li><b>Anyone who would rather their betting history lived on their own machine</b> than only on somebody else&rsquo;s servers</li>
+        </ul>
+
+        <h2 class="mt-5">Features</h2>
+        <hr>
+
+        <h3 class="mt-4">Two tabs, one book</h3>
+        <ul>
+          <li><b>Active</b> &mdash; every open wager with platform, category, title, side, stake, odds, max win, profit and return if it wins, fees, the current price and what it is worth now, plus the dates it was placed and closes</li>
+          <li><b>History</b> &mdash; every closed wager with its result, the payout, the realised profit or loss and the return</li>
+          <li>A <b>totals line under each table</b>: open exposure and max win on one side; count, win rate and net profit or loss on the other</li>
+          <li>Sorting works on the <b>real values</b>, not the formatted text, so money and percentages order correctly</li>
+        </ul>
+
+        <h3 class="mt-4">Prices that update themselves</h3>
+        <ul>
+          <li><b>Update Prices</b> (F5) asks both sites what each open wager could be sold for right now &mdash; the best bid for the side you hold &mdash; using their public market data</li>
+          <li>It runs <b>off the interface thread</b>, so the window stays usable while it works</li>
+          <li>Paste a market&rsquo;s web address into the Ticker field and the app <b>reads the platform and the market id straight out of it</b>, rather than making you find them</li>
+        </ul>
+
+        <h3 class="mt-4">Adding, settling, correcting</h3>
+        <ul>
+          <li>The <b>Add / Edit</b> dialog works the contracts, max win and profit out <b>as you type</b></li>
+          <li><b>Settle</b> fills in the usual payout for Won, Lost, Sold or Voided and still lets you correct it, because the usual answer is not always the right one</li>
+          <li><b>Reopen</b> undoes a settlement made by mistake</li>
+        </ul>
+
+        <h3 class="mt-4">Bring in what you already have</h3>
+        <ul>
+          <li><b>Import CSV</b> reads a Kalshi download, a Polymarket activity export, or this app&rsquo;s own CSV</li>
+          <li>It <b>shows you what it will add before it adds it</b>, skips rows already in the book, and lists any row it could not read together with the reason</li>
+          <li><b>Export CSV</b> sends the whole book back out again, for a spreadsheet or an accountant</li>
+        </ul>
+
+        <h3 class="mt-4">The book is yours</h3>
+        <p>Everything lives in a single readable JSON file in your own application data folder &mdash; not in the install folder &mdash; so upgrading or uninstalling never touches your wagers. It is rewritten whole through a temporary file on every change, so a crash mid-write leaves the previous book intact rather than a half-written one.</p>
+        <p>There is no account and no sign-in, nothing about you is collected, and the only thing that ever leaves your machine is a request for <b>public market prices</b> when you press Update Prices. The app never sees your platform logins, because it never asks for them.</p>
+
+        <h3 class="mt-4">What it is not</h3>
+        <p>Wager Book <b>does not place wagers, connect to your accounts, or tell you what to bet on</b>. It records what you have already done and does the arithmetic on it. Nothing here is betting advice, and a running total of past results is a record of the past, not a prediction.</p>
+
+        <h2 class="mt-5">Download</h2>
+        <hr>
+        <p>Free, and you do not need Python or anything else installed. Version 0.8.2.</p>
+        <a href="https://github.com/Charette-AI-Group/wagerBook/releases/latest" class="btn btn-primary">Download for Windows</a>
+        <a href="https://github.com/Charette-AI-Group/wagerBook/releases/latest" class="btn btn-primary">Download for macOS</a>
+        <a href="https://github.com/Charette-AI-Group/wagerBook" class="btn btn-secondary">Source on GitHub</a>
+        <p class="text-muted mt-3"><small>Both buttons bring you to the GitHub release page: scroll down to the <b>Assets</b> section. On Windows take <b>wagerBookSetup-0.8.2.exe</b> to install it, or <b>WagerBook-0.8.2-portable.zip</b> if you would rather unzip a folder and run <code>WagerBook.exe</code> from anywhere. On macOS take <b>WagerBook-0.8.2-macos.zip</b>, unzip it and drag <b>WagerBook.app</b> to Applications.</small></p>
+        <p class="text-muted"><small>The Windows installer is <b>per-user</b>, so it asks for no administrator rights and installs nothing machine-wide. On macOS the bundle is not notarised, so right-click the app and choose &ldquo;Open&rdquo; the first time rather than double-clicking. Every build is produced by a public workflow straight from the source, and is asked whether it kept its icon, its manual and its certificate list, and whether it can still open its own window, before it is published &mdash; the certificate list because a bundle that lost it would look fine until Update Prices failed as though both sites were down.</small></p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img class="img-fluid rounded border" src="img/wagerBookScreenshot.png" alt="The Active tab: five open wagers from Kalshi and Polymarket with stake, odds, max win, profit if won and return">
+        <a href="https://charette-ai-group.github.io/wagerBook/" class="btn btn-primary btn-block mt-3">Visit the Wager Book Site</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Screenshots, the manual and the downloads.</small></p>
+        <a href="https://github.com/Charette-AI-Group/wagerBook/releases/latest" class="btn btn-outline-primary btn-block mt-3">All Downloads</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Installer, portable zip and the macOS app.</small></p>
+        <a href="https://github.com/Charette-AI-Group/wagerBook/blob/main/docs/manual/README.md" class="btn btn-outline-secondary btn-block mt-3">Read the Manual</a>
+        <p class="text-muted text-center mt-2 mb-0"><small>Including the arithmetic. Also on F1 inside the application.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2>Support This Work</h2>
+        <hr>
+        <p>Wager Book is free and open source. There is no licence to buy, no account to make, no ads, and nothing about you is collected or sent anywhere. That is also why software like this is hard to sustain: there is no subscription to bill and no data to sell, so nothing pays for the work behind it.</p>
+        <p>A book of money owed and money won has to be right, and it has to keep being right. Two sites change their market data without warning, a payout rule turns out to have an exception, a CSV export gains a column, and an app that quietly got the arithmetic wrong would be worse than no app at all. That is why the import shows you every row before it adds it, why settling proposes the usual payout but still lets you correct it, and why the book is written in a way that survives a crash halfway through. A donation is what pays for that kind of care, and it funds the next free tool as well as the upkeep of this one.</p>
+        <p>If this gave you a straight answer about how you are actually doing, please consider chipping in.</p>
+        <a href="https://www.paypal.com/donate/?hosted_button_id=FEM4WLD7LHY36" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Donate</a>
+        <p class="text-muted mt-3"><small>Secure payment through PayPal &mdash; no account required, and any amount is appreciated. Thank you for supporting independent, open source software.</small></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Charette AI Group, 2026</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
