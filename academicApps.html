@@ -74,40 +74,71 @@
     <!-- /.row -->
 
     <!--
-      Adding an academic app - one card per app, in the same shape as the
-      main catalog (apps.html), placed above the "nothing here yet" note,
-      which can be removed once the first card is in.
-
-      <div class="card mb-4">
-        <div class="row no-gutters align-items-center">
-          <div class="col-md-3">
-            <img class="card-img" src="img/<name>Card.png" alt="<what the image shows>">
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <h3 class="card-title mb-1"><App name></h3>
-              <p class="text-muted mb-3"><small><kind of app> &middot; <platforms></small></p>
-              <p class="card-text"><what it does, and which research it belongs to></p>
-              <p class="mb-3">
-                <span class="h3 mb-0 downloadCount" data-repo="Charette-AI-Group/<repo>" data-assets="\.(exe|zip)$">&mdash;</span>
-                <span class="text-muted">downloads</span>
-              </p>
-              <a href="https://github.com/Charette-AI-Group/<repo>/releases/latest" class="btn btn-outline-primary">Download</a>
-              <a href="https://github.com/Charette-AI-Group/<repo>" class="btn btn-outline-secondary">Source</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      The download counter is optional; js/downloadCounts.js, loaded at the
-      foot of this page, fills it in the same way as on the main catalog.
+      Adding an academic app: a card in the same shape as the main catalog
+      (apps.html), followed by a short account of the research it belongs to,
+      as Strand Slip does below. Copy that block, from its card to the end of
+      its research section, and change what is inside. data-repo works for any
+      public repository, under any owner; js/downloadCounts.js, loaded at the
+      foot of this page, fills the count in as on the main catalog.
     -->
 
     <div class="row">
-      <div class="col-md-9 mb-5">
+      <div class="col-md-9">
         <h2>Apps</h2>
         <hr>
-        <p class="text-muted">No apps are listed yet. They will appear here as each one becomes available.</p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Strand Slip -->
+    <div class="card mb-4">
+      <div class="row no-gutters align-items-center">
+        <div class="col-md-3">
+          <img class="card-img" src="img/strandSlipCard.png" alt="Strand Slip icon: the section of a strand, a core ringed by wires, one of them slipping">
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <h3 class="card-title mb-1">Strand Slip</h3>
+            <p class="text-muted mb-3"><small>Master&rsquo;s thesis, Mechanical Engineering, Universit&eacute; Laval, 1992 &middot; Desktop application for Windows</small></p>
+            <p class="card-text">The Fortran programs behind the 1992 master&rsquo;s thesis on the damping of stranded cables, and behind the 1990 report that came before it, revived as one desktop application. It computes the bending stiffness of a strand whose wires stick to or slip on its core, and the energy a wire dissipates by slipping, for a sinusoidal deflection or a constant radius of curvature &mdash; and reproduces the original programs&rsquo; results digit for digit.</p>
+            <p class="mb-3">
+              <span class="h3 mb-0 downloadCount" data-repo="FrancoisCharette/strandSlip" data-assets="\.(exe|zip)$">&mdash;</span>
+              <span class="text-muted">downloads</span>
+            </p>
+            <a href="https://francoischarette.github.io/bio/pubs/masterThesis_EN.pdf" class="btn btn-primary">Read the Thesis</a>
+            <a href="https://francoischarette.github.io/bio/pubs/masterThesis.pdf" class="btn btn-outline-primary" hreflang="fr" lang="fr">Th&egrave;se originale (fran&ccedil;ais)</a>
+            <a href="https://github.com/FrancoisCharette/strandSlip/releases/latest" class="btn btn-outline-primary">Download</a>
+            <a href="https://github.com/FrancoisCharette/strandSlip" class="btn btn-outline-secondary">Source on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-9 mb-5">
+        <h3 class="mt-2">The research</h3>
+        <p>An overhead power-line conductor is a strand: wires wound helically around a core. When the line vibrates, the conductor bends back and forth, its wires slip against the core, and the friction between them turns part of the motion into heat. How much energy that internal friction can absorb is part of how a conductor behaves under vibration.</p>
+        <p>The thesis, <i>Analysis of the Damping Characteristics of a Stranded Cable under Vibration</i>, was carried out at Universit&eacute; Laval for Hydro-Qu&eacute;bec&rsquo;s research institute, IREQ, and completed in April 1992. It developed a simplified single-layer strand model to compute the energy dissipated by friction between the wires and the core, with the relative displacement between wire and core determined from contact mechanics, and compared the predictions with tests on overhead transmission-line conductors in free-field conditions. Three models of the slip are worked through: Hardy&rsquo;s model, continuity of deformation, and compliance, which separates micro-slip from macro-slip. The thesis followed a 1990 report on the bending stiffness of a strand, <i lang="fr">Rigidit&eacute; transversale d&rsquo;un toron</i> (report SM-90-03).</p>
+
+        <h3 class="mt-4">The application</h3>
+        <p>That work rested on Fortran programs written for DOS: seven from the 1990 report and six from the thesis. The 1990 sources and executables survived intact; the 1992 sources survived only as listings printed in the program manual, and were recovered from its WordPerfect file. Strand Slip brings all thirteen back as one application, with tabs that follow the thesis chapter by chapter, a plot and a result table for every run, and an export that writes the same files the original programs wrote, record for record.</p>
+
+        <h3 class="mt-4">How faithful it is</h3>
+        <ul>
+          <li>It prints the same digits as the results published in the February 1991 progress report</li>
+          <li>Its engine agrees <b>bit for bit</b> with line-by-line transcriptions of the original Fortran</li>
+          <li>The thesis&rsquo;s tables 6.1 and 6.2 come out digit for digit, apart from two misprints and two roundings in the thesis &mdash; which its tests point out &mdash; and one sum that differs by 0.14&nbsp;%</li>
+          <li>The originals&rsquo; quirks are kept on purpose, single-precision rounding and Fortran output formatting included, so that old results reproduce exactly</li>
+        </ul>
+        <p>The <a href="https://github.com/FrancoisCharette/strandSlip/blob/main/docs/manual/README.md">user manual</a> explains each tab, and the <a href="https://github.com/FrancoisCharette/strandSlip/tree/main/legacy">original Fortran sources</a> are kept unchanged in the repository.</p>
+
+        <h3 class="mt-4">Read the thesis</h3>
+        <ul>
+          <li><a href="https://francoischarette.github.io/bio/pubs/masterThesis_EN.pdf"><i>Analysis of the Damping Characteristics of a Stranded Cable under Vibration</i></a> &mdash; English translation (PDF)</li>
+          <li><a href="https://francoischarette.github.io/bio/pubs/masterThesis.pdf" hreflang="fr">The original thesis, in French</a> (PDF)</li>
+          <li>A related publication from the same work: S. Goudreau, F. Charette, C. Hardy and L. Cloutier, <a href="https://francoischarette.github.io/bio/pubs/1998_JEM_Bending_Energy_Dissipation_Stranded_Cable.pdf"><i>Bending Energy Dissipation of Simplified Single-Layer Stranded Cable</i></a>, Journal of Engineering Mechanics (ASCE), vol.&nbsp;124, no.&nbsp;8, pp.&nbsp;811&ndash;817, 1998 (PDF)</li>
+        </ul>
+        <p class="text-muted"><small>Strand Slip runs on Windows only: take the per-user installer, which needs no administrator rights, or the portable zip, from the GitHub release page.</small></p>
       </div>
     </div>
     <!-- /.row -->
